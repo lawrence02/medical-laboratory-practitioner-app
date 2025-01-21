@@ -1,0 +1,10 @@
+{
+  "medicalLaboratoryPractitionerApp": {
+    "EmploymentStatus": {
+      "null": "",
+      "FullTime": "FullTime",
+      "PartTime": "PartTime",
+      "Temporary": "Temporary"
+    }
+  }
+}

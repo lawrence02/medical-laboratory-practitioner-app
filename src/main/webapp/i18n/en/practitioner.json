@@ -1,0 +1,60 @@
+{
+  "medicalLaboratoryPractitionerApp": {
+    "practitioner": {
+      "home": {
+        "title": "Practitioners",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Practitioner",
+        "createOrEditLabel": "Create or edit a Practitioner",
+        "notFound": "No Practitioners found"
+      },
+      "created": "A new Practitioner is created with identifier {{ param }}",
+      "updated": "A Practitioner is updated with identifier {{ param }}",
+      "deleted": "A Practitioner is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Practitioner {{ id }}?"
+      },
+      "detail": {
+        "title": "Practitioner"
+      },
+      "id": "ID",
+      "practitionerType": "Practitioner Type",
+      "registrationNumber": "Registration Number",
+      "title": "Title",
+      "surname": "Surname",
+      "forenames": "Forenames",
+      "previousSurname": "Previous Surname",
+      "dob": "Dob",
+      "gender": "Gender",
+      "placeOfBirthTown": "Place Of Birth Town",
+      "placeOfBirthCountry": "Place Of Birth Country",
+      "nationality": "Nationality",
+      "nationalId": "National Id",
+      "maritalStatus": "Marital Status",
+      "residentialAddress1": "Residential Address 1",
+      "residentialAddress2": "Residential Address 2",
+      "residentialAddress3": "Residential Address 3",
+      "homePhone": "Home Phone",
+      "workPhone": "Work Phone",
+      "cellPhone": "Cell Phone",
+      "emailAddress": "Email Address",
+      "nameOfPlaceOfEmployment": "Name Of Place Of Employment",
+      "employerAddress": "Employer Address",
+      "employerEmail": "Employer Email",
+      "dateOfEmployment": "Date Of Employment",
+      "areaOfEmployment": "Area Of Employment",
+      "employmentStatus": "Employment Status",
+      "typeOfInstitution": "Type Of Institution",
+      "provinceEmployed": "Province Employed",
+      "reasonForNonEmployment": "Reason For Non Employment",
+      "dateOfApplication": "Date Of Application",
+      "applicationFee": "Application Fee",
+      "status": "Status",
+      "reasonNotApproved": "Reason Not Approved",
+      "qualification": "Qualification",
+      "help": {
+        "practitionerType": "The practitionerId attribute."
+      }
+    }
+  }
+}

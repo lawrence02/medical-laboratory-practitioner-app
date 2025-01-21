@@ -1,0 +1,10 @@
+{
+  "medicalLaboratoryPractitionerApp": {
+    "Gender": {
+      "null": "",
+      "Male": "Male",
+      "Female": "Female",
+      "Unknown": "Unknown"
+    }
+  }
+}

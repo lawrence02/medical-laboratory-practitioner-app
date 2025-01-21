@@ -1,0 +1,44 @@
+{
+  "annotations": {
+    "changelogDate": "20250121193036"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "qualificationName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nameOfInstitute",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateFrom",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateTo",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "awardedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "awardedDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "name": "Qualification",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "practitioner",
+      "relationshipName": "practitioner",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

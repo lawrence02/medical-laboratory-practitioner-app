@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (qualification(); as qualificationRef) {
+      <div>
+        <h2 data-cy="qualificationDetailsHeading">
+          <span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.detail.title">Qualification</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ qualificationRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.qualificationName">Qualification Name</span></dt>
+          <dd>
+            <span>{{ qualificationRef.qualificationName }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.nameOfInstitute">Name Of Institute</span></dt>
+          <dd>
+            <span>{{ qualificationRef.nameOfInstitute }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.dateFrom">Date From</span></dt>
+          <dd>
+            <span>{{ qualificationRef.dateFrom | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.dateTo">Date To</span></dt>
+          <dd>
+            <span>{{ qualificationRef.dateTo | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.awardedBy">Awarded By</span></dt>
+          <dd>
+            <span>{{ qualificationRef.awardedBy }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.awardedDate">Awarded Date</span></dt>
+          <dd>
+            <span>{{ qualificationRef.awardedDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.practitioner">Practitioner</span></dt>
+          <dd>
+            @if (qualification()!.practitioner) {
+              <div>
+                <a [routerLink]="['/practitioner', qualification()!.practitioner?.id, 'view']">{{ qualificationRef.practitioner?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/qualification', qualificationRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>
