@@ -1,0 +1,167 @@
+{
+  "annotations": {
+    "changelogDate": "20250121193035"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "documentation": "The practitionerId attribute.",
+      "fieldName": "practitionerType",
+      "fieldType": "PractitionerType",
+      "fieldValues": "ClinicalScientist,MedicalResearchScientist,MedicalLaboratoryScientist,MedicalLaboratoryTechnician,StateCertifiedTechnician,State,Certified,Blood,Bank,Technician,Cytotechnician,POCTester"
+    },
+    {
+      "fieldName": "registrationNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "title",
+      "fieldType": "Title",
+      "fieldValues": "Mr,Mrs,Miss,Ms,Dr"
+    },
+    {
+      "fieldName": "surname",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "forenames",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "previousSurname",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dob",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "Gender",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Male,Female,Unknown"
+    },
+    {
+      "fieldName": "placeOfBirthTown",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "placeOfBirthCountry",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nationality",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nationalId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "maritalStatus",
+      "fieldType": "MaritalStatus",
+      "fieldValues": "Married,Single,Other"
+    },
+    {
+      "fieldName": "residentialAddress1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "residentialAddress2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "residentialAddress3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "homePhone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "workPhone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cellPhone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "emailAddress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nameOfPlaceOfEmployment",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "employerAddress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "employerEmail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateOfEmployment",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "areaOfEmployment",
+      "fieldType": "AreaOfEmployment",
+      "fieldValues": "Government,Mission,Private,LocalAuthority,Other"
+    },
+    {
+      "fieldName": "employmentStatus",
+      "fieldType": "EmploymentStatus",
+      "fieldValues": "FullTime,PartTime,Temporary"
+    },
+    {
+      "fieldName": "typeOfInstitution",
+      "fieldType": "TypeOfInstitution",
+      "fieldValues": "Hospital,Clinic,EducationInstitute,Pharmacy,Laboratory,NursingHome,Mines,MobilePost,Agency,Other"
+    },
+    {
+      "fieldName": "provinceEmployed",
+      "fieldType": "Province",
+      "fieldValues": "Bulawayo,Harare,MashonaLandCentral,MashonaLandEast,MashonaLandWest,Masvingo,MatebelelandNorth,MatebelelandSouth,Manicaland,Midlaands"
+    },
+    {
+      "fieldName": "reasonForNonEmployment",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateOfApplication",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "applicationFee",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reasonNotApproved",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Practitioner",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "qualification",
+      "otherEntityRelationshipName": "practitioner",
+      "relationshipName": "qualification",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

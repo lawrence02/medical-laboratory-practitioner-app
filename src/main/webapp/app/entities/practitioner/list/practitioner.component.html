@@ -1,0 +1,432 @@
+<div>
+  <h2 id="page-heading" data-cy="PractitionerHeading">
+    <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.home.title">Practitioners</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-practitioner"
+        [routerLink]="['/practitioner/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.home.createLabel">Create a new Practitioner</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (practitioners().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.home.notFound">No Practitioners found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="practitionerType">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.practitionerType">Practitioner Type</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="registrationNumber">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.registrationNumber">Registration Number</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="title">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.title">Title</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="surname">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.surname">Surname</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="forenames">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.forenames">Forenames</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="previousSurname">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.previousSurname">Previous Surname</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dob">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.dob">Dob</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="gender">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.gender">Gender</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="placeOfBirthTown">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.placeOfBirthTown">Place Of Birth Town</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="placeOfBirthCountry">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.placeOfBirthCountry">Place Of Birth Country</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nationality">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.nationality">Nationality</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nationalId">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.nationalId">National Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="maritalStatus">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.maritalStatus">Marital Status</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="residentialAddress1">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.residentialAddress1">Residential Address 1</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="residentialAddress2">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.residentialAddress2">Residential Address 2</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="residentialAddress3">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.residentialAddress3">Residential Address 3</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="homePhone">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.homePhone">Home Phone</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="workPhone">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.workPhone">Work Phone</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cellPhone">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.cellPhone">Cell Phone</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="emailAddress">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.emailAddress">Email Address</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nameOfPlaceOfEmployment">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.nameOfPlaceOfEmployment"
+                  >Name Of Place Of Employment</span
+                >
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="employerAddress">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.employerAddress">Employer Address</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="employerEmail">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.employerEmail">Employer Email</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateOfEmployment">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.dateOfEmployment">Date Of Employment</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="areaOfEmployment">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.areaOfEmployment">Area Of Employment</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="employmentStatus">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.employmentStatus">Employment Status</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="typeOfInstitution">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.typeOfInstitution">Type Of Institution</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="provinceEmployed">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.provinceEmployed">Province Employed</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="reasonForNonEmployment">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.reasonForNonEmployment">Reason For Non Employment</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateOfApplication">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.dateOfApplication">Date Of Application</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="applicationFee">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.applicationFee">Application Fee</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="status">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.status">Status</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="reasonNotApproved">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.reasonNotApproved">Reason Not Approved</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (practitioner of practitioners(); track trackId(practitioner)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/practitioner', practitioner.id, 'view']">{{ practitioner.id }}</a>
+              </td>
+              <td [jhiTranslate]="'medicalLaboratoryPractitionerApp.PractitionerType.' + (practitioner.practitionerType ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    ClinicalScientist: 'ClinicalScientist',
+                    MedicalResearchScientist: 'MedicalResearchScientist',
+                    MedicalLaboratoryScientist: 'MedicalLaboratoryScientist',
+                    MedicalLaboratoryTechnician: 'MedicalLaboratoryTechnician',
+                    StateCertifiedTechnician: 'StateCertifiedTechnician',
+                    State: 'State',
+                    Certified: 'Certified',
+                    Blood: 'Blood',
+                    Bank: 'Bank',
+                    Technician: 'Technician',
+                    Cytotechnician: 'Cytotechnician',
+                    POCTester: 'POCTester',
+                  }[practitioner.practitionerType ?? 'null']
+                }}
+              </td>
+              <td>{{ practitioner.registrationNumber }}</td>
+              <td [jhiTranslate]="'medicalLaboratoryPractitionerApp.Title.' + (practitioner.title ?? 'null')">
+                {{ { null: '', Mr: 'Mr', Mrs: 'Mrs', Miss: 'Miss', Ms: 'Ms', Dr: 'Dr' }[practitioner.title ?? 'null'] }}
+              </td>
+              <td>{{ practitioner.surname }}</td>
+              <td>{{ practitioner.forenames }}</td>
+              <td>{{ practitioner.previousSurname }}</td>
+              <td>{{ practitioner.dob | formatMediumDate }}</td>
+              <td [jhiTranslate]="'medicalLaboratoryPractitionerApp.Gender.' + (practitioner.gender ?? 'null')">
+                {{ { null: '', Male: 'Male', Female: 'Female', Unknown: 'Unknown' }[practitioner.gender ?? 'null'] }}
+              </td>
+              <td>{{ practitioner.placeOfBirthTown }}</td>
+              <td>{{ practitioner.placeOfBirthCountry }}</td>
+              <td>{{ practitioner.nationality }}</td>
+              <td>{{ practitioner.nationalId }}</td>
+              <td [jhiTranslate]="'medicalLaboratoryPractitionerApp.MaritalStatus.' + (practitioner.maritalStatus ?? 'null')">
+                {{ { null: '', Married: 'Married', Single: 'Single', Other: 'Other' }[practitioner.maritalStatus ?? 'null'] }}
+              </td>
+              <td>{{ practitioner.residentialAddress1 }}</td>
+              <td>{{ practitioner.residentialAddress2 }}</td>
+              <td>{{ practitioner.residentialAddress3 }}</td>
+              <td>{{ practitioner.homePhone }}</td>
+              <td>{{ practitioner.workPhone }}</td>
+              <td>{{ practitioner.cellPhone }}</td>
+              <td>{{ practitioner.emailAddress }}</td>
+              <td>{{ practitioner.nameOfPlaceOfEmployment }}</td>
+              <td>{{ practitioner.employerAddress }}</td>
+              <td>{{ practitioner.employerEmail }}</td>
+              <td>{{ practitioner.dateOfEmployment }}</td>
+              <td [jhiTranslate]="'medicalLaboratoryPractitionerApp.AreaOfEmployment.' + (practitioner.areaOfEmployment ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    Government: 'Government',
+                    Mission: 'Mission',
+                    Private: 'Private',
+                    LocalAuthority: 'LocalAuthority',
+                    Other: 'Other',
+                  }[practitioner.areaOfEmployment ?? 'null']
+                }}
+              </td>
+              <td [jhiTranslate]="'medicalLaboratoryPractitionerApp.EmploymentStatus.' + (practitioner.employmentStatus ?? 'null')">
+                {{
+                  { null: '', FullTime: 'FullTime', PartTime: 'PartTime', Temporary: 'Temporary' }[practitioner.employmentStatus ?? 'null']
+                }}
+              </td>
+              <td [jhiTranslate]="'medicalLaboratoryPractitionerApp.TypeOfInstitution.' + (practitioner.typeOfInstitution ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    Hospital: 'Hospital',
+                    Clinic: 'Clinic',
+                    EducationInstitute: 'EducationInstitute',
+                    Pharmacy: 'Pharmacy',
+                    Laboratory: 'Laboratory',
+                    NursingHome: 'NursingHome',
+                    Mines: 'Mines',
+                    MobilePost: 'MobilePost',
+                    Agency: 'Agency',
+                    Other: 'Other',
+                  }[practitioner.typeOfInstitution ?? 'null']
+                }}
+              </td>
+              <td [jhiTranslate]="'medicalLaboratoryPractitionerApp.Province.' + (practitioner.provinceEmployed ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    Bulawayo: 'Bulawayo',
+                    Harare: 'Harare',
+                    MashonaLandCentral: 'MashonaLandCentral',
+                    MashonaLandEast: 'MashonaLandEast',
+                    MashonaLandWest: 'MashonaLandWest',
+                    Masvingo: 'Masvingo',
+                    MatebelelandNorth: 'MatebelelandNorth',
+                    MatebelelandSouth: 'MatebelelandSouth',
+                    Manicaland: 'Manicaland',
+                    Midlaands: 'Midlaands',
+                  }[practitioner.provinceEmployed ?? 'null']
+                }}
+              </td>
+              <td>{{ practitioner.reasonForNonEmployment }}</td>
+              <td>{{ practitioner.dateOfApplication }}</td>
+              <td>{{ practitioner.applicationFee }}</td>
+              <td>{{ practitioner.status }}</td>
+              <td>{{ practitioner.reasonNotApproved }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/practitioner', practitioner.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/practitioner', practitioner.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(practitioner)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (practitioners().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

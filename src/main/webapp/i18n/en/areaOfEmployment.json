@@ -1,0 +1,12 @@
+{
+  "medicalLaboratoryPractitionerApp": {
+    "AreaOfEmployment": {
+      "null": "",
+      "Government": "Government",
+      "Mission": "Mission",
+      "Private": "Private",
+      "LocalAuthority": "LocalAuthority",
+      "Other": "Other"
+    }
+  }
+}

@@ -1,0 +1,235 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (practitioner(); as practitionerRef) {
+      <div>
+        <h2 data-cy="practitionerDetailsHeading">
+          <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.detail.title">Practitioner</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ practitionerRef.id }}</span>
+          </dd>
+          <dt>
+            <span
+              [ngbTooltip]="'medicalLaboratoryPractitionerApp.practitioner.help.practitionerType' | translate"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.practitionerType"
+              >Practitioner Type</span
+            >
+          </dt>
+          <dd>
+            <span [jhiTranslate]="'medicalLaboratoryPractitionerApp.PractitionerType.' + (practitionerRef.practitionerType ?? 'null')">{{
+              {
+                null: '',
+                ClinicalScientist: 'ClinicalScientist',
+                MedicalResearchScientist: 'MedicalResearchScientist',
+                MedicalLaboratoryScientist: 'MedicalLaboratoryScientist',
+                MedicalLaboratoryTechnician: 'MedicalLaboratoryTechnician',
+                StateCertifiedTechnician: 'StateCertifiedTechnician',
+                State: 'State',
+                Certified: 'Certified',
+                Blood: 'Blood',
+                Bank: 'Bank',
+                Technician: 'Technician',
+                Cytotechnician: 'Cytotechnician',
+                POCTester: 'POCTester',
+              }[practitionerRef.practitionerType ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.registrationNumber">Registration Number</span></dt>
+          <dd>
+            <span>{{ practitionerRef.registrationNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.title">Title</span></dt>
+          <dd>
+            <span [jhiTranslate]="'medicalLaboratoryPractitionerApp.Title.' + (practitionerRef.title ?? 'null')">{{
+              { null: '', Mr: 'Mr', Mrs: 'Mrs', Miss: 'Miss', Ms: 'Ms', Dr: 'Dr' }[practitionerRef.title ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.surname">Surname</span></dt>
+          <dd>
+            <span>{{ practitionerRef.surname }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.forenames">Forenames</span></dt>
+          <dd>
+            <span>{{ practitionerRef.forenames }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.previousSurname">Previous Surname</span></dt>
+          <dd>
+            <span>{{ practitionerRef.previousSurname }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.dob">Dob</span></dt>
+          <dd>
+            <span>{{ practitionerRef.dob | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.gender">Gender</span></dt>
+          <dd>
+            <span [jhiTranslate]="'medicalLaboratoryPractitionerApp.Gender.' + (practitionerRef.gender ?? 'null')">{{
+              { null: '', Male: 'Male', Female: 'Female', Unknown: 'Unknown' }[practitionerRef.gender ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.placeOfBirthTown">Place Of Birth Town</span></dt>
+          <dd>
+            <span>{{ practitionerRef.placeOfBirthTown }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.placeOfBirthCountry">Place Of Birth Country</span></dt>
+          <dd>
+            <span>{{ practitionerRef.placeOfBirthCountry }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.nationality">Nationality</span></dt>
+          <dd>
+            <span>{{ practitionerRef.nationality }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.nationalId">National Id</span></dt>
+          <dd>
+            <span>{{ practitionerRef.nationalId }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.maritalStatus">Marital Status</span></dt>
+          <dd>
+            <span [jhiTranslate]="'medicalLaboratoryPractitionerApp.MaritalStatus.' + (practitionerRef.maritalStatus ?? 'null')">{{
+              { null: '', Married: 'Married', Single: 'Single', Other: 'Other' }[practitionerRef.maritalStatus ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.residentialAddress1">Residential Address 1</span></dt>
+          <dd>
+            <span>{{ practitionerRef.residentialAddress1 }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.residentialAddress2">Residential Address 2</span></dt>
+          <dd>
+            <span>{{ practitionerRef.residentialAddress2 }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.residentialAddress3">Residential Address 3</span></dt>
+          <dd>
+            <span>{{ practitionerRef.residentialAddress3 }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.homePhone">Home Phone</span></dt>
+          <dd>
+            <span>{{ practitionerRef.homePhone }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.workPhone">Work Phone</span></dt>
+          <dd>
+            <span>{{ practitionerRef.workPhone }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.cellPhone">Cell Phone</span></dt>
+          <dd>
+            <span>{{ practitionerRef.cellPhone }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.emailAddress">Email Address</span></dt>
+          <dd>
+            <span>{{ practitionerRef.emailAddress }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.nameOfPlaceOfEmployment">Name Of Place Of Employment</span>
+          </dt>
+          <dd>
+            <span>{{ practitionerRef.nameOfPlaceOfEmployment }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.employerAddress">Employer Address</span></dt>
+          <dd>
+            <span>{{ practitionerRef.employerAddress }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.employerEmail">Employer Email</span></dt>
+          <dd>
+            <span>{{ practitionerRef.employerEmail }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.dateOfEmployment">Date Of Employment</span></dt>
+          <dd>
+            <span>{{ practitionerRef.dateOfEmployment }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.areaOfEmployment">Area Of Employment</span></dt>
+          <dd>
+            <span [jhiTranslate]="'medicalLaboratoryPractitionerApp.AreaOfEmployment.' + (practitionerRef.areaOfEmployment ?? 'null')">{{
+              {
+                null: '',
+                Government: 'Government',
+                Mission: 'Mission',
+                Private: 'Private',
+                LocalAuthority: 'LocalAuthority',
+                Other: 'Other',
+              }[practitionerRef.areaOfEmployment ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.employmentStatus">Employment Status</span></dt>
+          <dd>
+            <span [jhiTranslate]="'medicalLaboratoryPractitionerApp.EmploymentStatus.' + (practitionerRef.employmentStatus ?? 'null')">{{
+              { null: '', FullTime: 'FullTime', PartTime: 'PartTime', Temporary: 'Temporary' }[practitionerRef.employmentStatus ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.typeOfInstitution">Type Of Institution</span></dt>
+          <dd>
+            <span [jhiTranslate]="'medicalLaboratoryPractitionerApp.TypeOfInstitution.' + (practitionerRef.typeOfInstitution ?? 'null')">{{
+              {
+                null: '',
+                Hospital: 'Hospital',
+                Clinic: 'Clinic',
+                EducationInstitute: 'EducationInstitute',
+                Pharmacy: 'Pharmacy',
+                Laboratory: 'Laboratory',
+                NursingHome: 'NursingHome',
+                Mines: 'Mines',
+                MobilePost: 'MobilePost',
+                Agency: 'Agency',
+                Other: 'Other',
+              }[practitionerRef.typeOfInstitution ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.provinceEmployed">Province Employed</span></dt>
+          <dd>
+            <span [jhiTranslate]="'medicalLaboratoryPractitionerApp.Province.' + (practitionerRef.provinceEmployed ?? 'null')">{{
+              {
+                null: '',
+                Bulawayo: 'Bulawayo',
+                Harare: 'Harare',
+                MashonaLandCentral: 'MashonaLandCentral',
+                MashonaLandEast: 'MashonaLandEast',
+                MashonaLandWest: 'MashonaLandWest',
+                Masvingo: 'Masvingo',
+                MatebelelandNorth: 'MatebelelandNorth',
+                MatebelelandSouth: 'MatebelelandSouth',
+                Manicaland: 'Manicaland',
+                Midlaands: 'Midlaands',
+              }[practitionerRef.provinceEmployed ?? 'null']
+            }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.reasonForNonEmployment">Reason For Non Employment</span>
+          </dt>
+          <dd>
+            <span>{{ practitionerRef.reasonForNonEmployment }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.dateOfApplication">Date Of Application</span></dt>
+          <dd>
+            <span>{{ practitionerRef.dateOfApplication }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.applicationFee">Application Fee</span></dt>
+          <dd>
+            <span>{{ practitionerRef.applicationFee }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.status">Status</span></dt>
+          <dd>
+            <span>{{ practitionerRef.status }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.reasonNotApproved">Reason Not Approved</span></dt>
+          <dd>
+            <span>{{ practitionerRef.reasonNotApproved }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/practitioner', practitionerRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

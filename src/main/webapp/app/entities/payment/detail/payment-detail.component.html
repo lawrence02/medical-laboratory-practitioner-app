@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (payment(); as paymentRef) {
+      <div>
+        <h2 data-cy="paymentDetailsHeading"><span jhiTranslate="medicalLaboratoryPractitionerApp.payment.detail.title">Payment</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ paymentRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.payment.registrationNumber">Registration Number</span></dt>
+          <dd>
+            <span>{{ paymentRef.registrationNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.payment.datePaid">Date Paid</span></dt>
+          <dd>
+            <span>{{ paymentRef.datePaid | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.payment.subscriptionPeriod">Subscription Period</span></dt>
+          <dd>
+            <span>{{ paymentRef.subscriptionPeriod }}</span>
+          </dd>
+          <dt><span jhiTranslate="medicalLaboratoryPractitionerApp.payment.amount">Amount</span></dt>
+          <dd>
+            <span>{{ paymentRef.amount }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/payment', paymentRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

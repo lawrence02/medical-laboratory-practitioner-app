@@ -1,0 +1,156 @@
+<div>
+  <h2 id="page-heading" data-cy="QualificationHeading">
+    <span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.home.title">Qualifications</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-qualification"
+        [routerLink]="['/qualification/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.home.createLabel">Create a new Qualification</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (qualifications().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.home.notFound">No Qualifications found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="qualificationName">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.qualificationName">Qualification Name</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nameOfInstitute">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.nameOfInstitute">Name Of Institute</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateFrom">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.dateFrom">Date From</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateTo">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.dateTo">Date To</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="awardedBy">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.awardedBy">Awarded By</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="awardedDate">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.awardedDate">Awarded Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="practitioner.id">
+              <div class="d-flex">
+                <span jhiTranslate="medicalLaboratoryPractitionerApp.qualification.practitioner">Practitioner</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (qualification of qualifications(); track trackId(qualification)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/qualification', qualification.id, 'view']">{{ qualification.id }}</a>
+              </td>
+              <td>{{ qualification.qualificationName }}</td>
+              <td>{{ qualification.nameOfInstitute }}</td>
+              <td>{{ qualification.dateFrom | formatMediumDate }}</td>
+              <td>{{ qualification.dateTo | formatMediumDate }}</td>
+              <td>{{ qualification.awardedBy }}</td>
+              <td>{{ qualification.awardedDate | formatMediumDate }}</td>
+              <td>
+                @if (qualification.practitioner) {
+                  <div>
+                    <a [routerLink]="['/practitioner', qualification.practitioner.id, 'view']">{{ qualification.practitioner.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/qualification', qualification.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/qualification', qualification.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(qualification)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (qualifications().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

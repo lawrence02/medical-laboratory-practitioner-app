@@ -1,0 +1,157 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-qualification-heading"
+        data-cy="QualificationCreateUpdateHeading"
+        jhiTranslate="medicalLaboratoryPractitionerApp.qualification.home.createOrEditLabel"
+      >
+        Create or edit a Qualification
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="medicalLaboratoryPractitionerApp.qualification.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_qualificationName"
+            jhiTranslate="medicalLaboratoryPractitionerApp.qualification.qualificationName"
+            >Qualification Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="qualificationName"
+            id="field_qualificationName"
+            data-cy="qualificationName"
+            formControlName="qualificationName"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_nameOfInstitute"
+            jhiTranslate="medicalLaboratoryPractitionerApp.qualification.nameOfInstitute"
+            >Name Of Institute</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="nameOfInstitute"
+            id="field_nameOfInstitute"
+            data-cy="nameOfInstitute"
+            formControlName="nameOfInstitute"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateFrom" jhiTranslate="medicalLaboratoryPractitionerApp.qualification.dateFrom"
+            >Date From</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dateFrom"
+              data-cy="dateFrom"
+              type="text"
+              class="form-control"
+              name="dateFrom"
+              ngbDatepicker
+              #dateFromDp="ngbDatepicker"
+              formControlName="dateFrom"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateFromDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateTo" jhiTranslate="medicalLaboratoryPractitionerApp.qualification.dateTo">Date To</label>
+          <div class="input-group">
+            <input
+              id="field_dateTo"
+              data-cy="dateTo"
+              type="text"
+              class="form-control"
+              name="dateTo"
+              ngbDatepicker
+              #dateToDp="ngbDatepicker"
+              formControlName="dateTo"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateToDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_awardedBy" jhiTranslate="medicalLaboratoryPractitionerApp.qualification.awardedBy"
+            >Awarded By</label
+          >
+          <input type="text" class="form-control" name="awardedBy" id="field_awardedBy" data-cy="awardedBy" formControlName="awardedBy" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_awardedDate" jhiTranslate="medicalLaboratoryPractitionerApp.qualification.awardedDate"
+            >Awarded Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_awardedDate"
+              data-cy="awardedDate"
+              type="text"
+              class="form-control"
+              name="awardedDate"
+              ngbDatepicker
+              #awardedDateDp="ngbDatepicker"
+              formControlName="awardedDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="awardedDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_practitioner" jhiTranslate="medicalLaboratoryPractitionerApp.qualification.practitioner"
+            >Practitioner</label
+          >
+          <select
+            class="form-control"
+            id="field_practitioner"
+            data-cy="practitioner"
+            name="practitioner"
+            formControlName="practitioner"
+            [compareWith]="comparePractitioner"
+          >
+            <option [ngValue]="null"></option>
+            @for (practitionerOption of practitionersSharedCollection; track $index) {
+              <option [ngValue]="practitionerOption">{{ practitionerOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

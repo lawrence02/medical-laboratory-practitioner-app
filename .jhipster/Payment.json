@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "changelogDate": "20250121193037"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "registrationNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "datePaid",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "subscriptionPeriod",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "amount",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Payment",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}
