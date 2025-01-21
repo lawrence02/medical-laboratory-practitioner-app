@@ -1,0 +1,121 @@
+entity Practitioner
+ {
+	/**
+	* The practitionerId attribute.
+	*/
+    practitionerType PractitionerType,
+    registrationNumber String required,
+    title Title,
+    surname String required,
+    forenames String required,
+    previousSurname String,
+    dob LocalDate required,
+    gender Gender required,
+    
+    placeOfBirthTown String,
+    placeOfBirthCountry String,
+    nationality String,
+    nationalId String,
+    maritalStatus MaritalStatus,
+    residentialAddress1 String,
+    residentialAddress2 String,
+    residentialAddress3 String,
+    homePhone String,
+    workPhone String,
+    cellPhone String,
+    emailAddress String,
+    nameOfPlaceOfEmployment String,
+    employerAddress String,
+    employerEmail String,
+    dateOfEmployment String,
+    areaOfEmployment AreaOfEmployment,
+    employmentStatus EmploymentStatus,
+    typeOfInstitution TypeOfInstitution,
+    provinceEmployed Province,
+    reasonForNonEmployment String,
+    dateOfApplication String,
+    //signature File,
+    applicationFee String,
+    status String,
+    reasonNotApproved String
+}
+
+entity Qualification {
+    qualificationName String,
+    nameOfInstitute String,
+    dateFrom LocalDate,
+    dateTo LocalDate,
+    awardedBy String, // Changed to String
+    awardedDate LocalDate
+}
+
+entity Payment {
+    registrationNumber String,
+    datePaid LocalDate,
+    subscriptionPeriod String,
+    amount String
+}
+
+enum Gender {
+    Male, Female, Unknown
+}
+enum MaritalStatus {
+    Married, Single, Other
+}
+
+enum Title {
+    Mr, Mrs, Miss, Ms, Dr
+}
+
+enum PractitionerType {
+    ClinicalScientist,
+	MedicalResearchScientist,
+	MedicalLaboratoryScientist,
+	MedicalLaboratoryTechnician,
+	StateCertifiedTechnician,
+	State Certified Blood Bank Technician,
+	Cytotechnician,
+	MedicalLaboratoryTechnician,
+	POCTester
+}
+
+enum AreaOfEmployment {
+    Government, Mission, Private,
+    LocalAuthority, Other
+}
+
+enum EmploymentStatus {
+    FullTime, PartTime, Temporary
+}
+
+enum TypeOfInstitution {
+    Hospital, Clinic, EducationInstitute,
+    Pharmacy, Laboratory, NursingHome,
+    Mines, MobilePost, Agency, Other
+}
+
+enum Province {
+    Bulawayo, Harare, MashonaLandCentral, MashonaLandEast,
+    MashonaLandWest, Masvingo,
+    MatebelelandNorth, MatebelelandSouth, Manicaland, Midlaands
+}
+
+
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Practitioner to Qualification{practitioner}
+
+}
+
+
+paginate all with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl 
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
