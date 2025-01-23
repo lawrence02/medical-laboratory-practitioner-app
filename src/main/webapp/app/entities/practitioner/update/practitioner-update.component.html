@@ -26,6 +26,31 @@
         </div>
 
         <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="mb-3">
+              <label
+                class="form-label"
+                for="field_practitionerType"
+                [ngbTooltip]="'medicalLaboratoryPractitionerApp.practitioner.practitionerType' | translate"
+                jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.practitionerType"
+                >I hereby apply for registration as</label
+              >
+              <select
+                class="form-control"
+                name="practitionerType"
+                formControlName="practitionerType"
+                id="field_practitionerType"
+                data-cy="practitionerType"
+              >
+                <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.PractitionerType.null' | translate }}</option>
+                @for (practitionerType of practitionerTypeValues; track $index) {
+                  <option [value]="practitionerType">
+                    {{ 'medicalLaboratoryPractitionerApp.PractitionerType.' + practitionerType | translate }}
+                  </option>
+                }
+              </select>
+            </div>
+          </div>
           @let registrationNumberRef = editForm.get('registrationNumber')!;
           <div class="col-md-6 mb-3">
             <label
@@ -50,8 +75,6 @@
               </div>
             }
           </div>
-
-          <div class="col-md-6 mb-3"></div>
         </div>
 
         <!-- Title and gender -->
@@ -197,7 +220,7 @@
               class="form-label"
               for="field_placeOfBirthCountry"
               jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.placeOfBirthCountry"
-              >Place Of Birth Country</label
+              >Country Of Birth</label
             >
             <input
               type="text"
@@ -206,6 +229,36 @@
               id="field_placeOfBirthCountry"
               data-cy="placeOfBirthCountry"
               formControlName="placeOfBirthCountry"
+            />
+          </div>
+        </div>
+
+        <!-- Nationality and National ID -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="field_nationality" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.nationality"
+              >Nationality</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="nationality"
+              id="field_nationality"
+              data-cy="nationality"
+              formControlName="nationality"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="field_nationalId" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.nationalId"
+              >National ID</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="nationalId"
+              id="field_nationalId"
+              data-cy="nationalId"
+              formControlName="nationalId"
             />
           </div>
         </div>
@@ -222,34 +275,6 @@
           <div class="col-md-6 mb-3"></div>
 
           <div class="col-md-6 mb-3"></div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_nationality" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.nationality"
-            >Nationality</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="nationality"
-            id="field_nationality"
-            data-cy="nationality"
-            formControlName="nationality"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_nationalId" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.nationalId"
-            >National Id</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="nationalId"
-            id="field_nationalId"
-            data-cy="nationalId"
-            formControlName="nationalId"
-          />
         </div>
 
         <div class="mb-3">
