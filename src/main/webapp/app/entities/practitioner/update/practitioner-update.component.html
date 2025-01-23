@@ -12,189 +12,216 @@
       <div>
         <jhi-alert-error></jhi-alert-error>
 
-        @if (editForm.controls.id.value !== null) {
-          <div class="mb-3">
-            <label class="form-label" for="field_id" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.id">ID</label>
-            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            @if (editForm.controls.id.value !== null) {
+              <div class="mb-3">
+                <label class="form-label" for="field_id" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.id">ID</label>
+                <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+              </div>
+            }
           </div>
-        }
 
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_practitionerType"
-            [ngbTooltip]="'medicalLaboratoryPractitionerApp.practitioner.help.practitionerType' | translate"
-            jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.practitionerType"
-            >Practitioner Type</label
-          >
-          <select
-            class="form-control"
-            name="practitionerType"
-            formControlName="practitionerType"
-            id="field_practitionerType"
-            data-cy="practitionerType"
-          >
-            <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.PractitionerType.null' | translate }}</option>
-            @for (practitionerType of practitionerTypeValues; track $index) {
-              <option [value]="practitionerType">
-                {{ 'medicalLaboratoryPractitionerApp.PractitionerType.' + practitionerType | translate }}
-              </option>
-            }
-          </select>
+          <div class="col-md-6 mb-3"></div>
         </div>
 
-        @let registrationNumberRef = editForm.get('registrationNumber')!;
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_registrationNumber"
-            jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.registrationNumber"
-            >Registration Number</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="registrationNumber"
-            id="field_registrationNumber"
-            data-cy="registrationNumber"
-            formControlName="registrationNumber"
-          />
-          @if (registrationNumberRef.invalid && (registrationNumberRef.dirty || registrationNumberRef.touched)) {
-            <div>
-              @if (editForm.get('registrationNumber')?.errors?.required) {
-                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
-              }
-            </div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_title" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.title">Title</label>
-          <select class="form-control" name="title" formControlName="title" id="field_title" data-cy="title">
-            <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.Title.null' | translate }}</option>
-            @for (title of titleValues; track $index) {
-              <option [value]="title">{{ 'medicalLaboratoryPractitionerApp.Title.' + title | translate }}</option>
-            }
-          </select>
-        </div>
-
-        @let surnameRef = editForm.get('surname')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_surname" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.surname">Surname</label>
-          <input type="text" class="form-control" name="surname" id="field_surname" data-cy="surname" formControlName="surname" />
-          @if (surnameRef.invalid && (surnameRef.dirty || surnameRef.touched)) {
-            <div>
-              @if (editForm.get('surname')?.errors?.required) {
-                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
-              }
-            </div>
-          }
-        </div>
-
-        @let forenamesRef = editForm.get('forenames')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_forenames" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.forenames"
-            >Forenames</label
-          >
-          <input type="text" class="form-control" name="forenames" id="field_forenames" data-cy="forenames" formControlName="forenames" />
-          @if (forenamesRef.invalid && (forenamesRef.dirty || forenamesRef.touched)) {
-            <div>
-              @if (editForm.get('forenames')?.errors?.required) {
-                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
-              }
-            </div>
-          }
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_previousSurname" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.previousSurname"
-            >Previous Surname</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="previousSurname"
-            id="field_previousSurname"
-            data-cy="previousSurname"
-            formControlName="previousSurname"
-          />
-        </div>
-
-        @let dobRef = editForm.get('dob')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_dob" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.dob">Dob</label>
-          <div class="input-group">
+        <div class="row">
+          @let registrationNumberRef = editForm.get('registrationNumber')!;
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_registrationNumber"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.registrationNumber"
+              >Registration Number</label
+            >
             <input
-              id="field_dob"
-              data-cy="dob"
               type="text"
               class="form-control"
-              name="dob"
-              ngbDatepicker
-              #dobDp="ngbDatepicker"
-              formControlName="dob"
+              name="registrationNumber"
+              id="field_registrationNumber"
+              data-cy="registrationNumber"
+              formControlName="registrationNumber"
             />
-            <button type="button" class="btn btn-secondary" (click)="dobDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
-          </div>
-          @if (dobRef.invalid && (dobRef.dirty || dobRef.touched)) {
-            <div>
-              @if (editForm.get('dob')?.errors?.required) {
-                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
-              }
-            </div>
-          }
-        </div>
-
-        @let genderRef = editForm.get('gender')!;
-        <div class="mb-3">
-          <label class="form-label" for="field_gender" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.gender">Gender</label>
-          <select class="form-control" name="gender" formControlName="gender" id="field_gender" data-cy="gender">
-            <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.Gender.null' | translate }}</option>
-            @for (gender of genderValues; track $index) {
-              <option [value]="gender">{{ 'medicalLaboratoryPractitionerApp.Gender.' + gender | translate }}</option>
+            @if (registrationNumberRef.invalid && (registrationNumberRef.dirty || registrationNumberRef.touched)) {
+              <div>
+                @if (editForm.get('registrationNumber')?.errors?.required) {
+                  <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+                }
+              </div>
             }
-          </select>
-          @if (genderRef.invalid && (genderRef.dirty || genderRef.touched)) {
-            <div>
-              @if (editForm.get('gender')?.errors?.required) {
-                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+          </div>
+
+          <div class="col-md-6 mb-3"></div>
+        </div>
+
+        <!-- Title and gender -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="field_title" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.title">Title</label>
+            <select class="form-control" name="title" formControlName="title" id="field_title" data-cy="title">
+              <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.Title.null' | translate }}</option>
+              @for (title of titleValues; track $index) {
+                <option [value]="title">{{ 'medicalLaboratoryPractitionerApp.Title.' + title | translate }}</option>
+              }
+            </select>
+          </div>
+          @let genderRef = editForm.get('gender')!;
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="field_gender" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.gender">Gender</label>
+            <select class="form-control" name="gender" formControlName="gender" id="field_gender" data-cy="gender">
+              <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.Gender.null' | translate }}</option>
+              @for (gender of genderValues; track $index) {
+                <option [value]="gender">{{ 'medicalLaboratoryPractitionerApp.Gender.' + gender | translate }}</option>
+              }
+            </select>
+            @if (genderRef.invalid && (genderRef.dirty || genderRef.touched)) {
+              <div>
+                @if (editForm.get('gender')?.errors?.required) {
+                  <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+                }
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Surname and Forename -->
+        <div class="row">
+          @let surnameRef = editForm.get('surname')!;
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="field_surname" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.surname"
+              >Surname</label
+            >
+            <input type="text" class="form-control" name="surname" id="field_surname" data-cy="surname" formControlName="surname" />
+            @if (surnameRef.invalid && (surnameRef.dirty || surnameRef.touched)) {
+              <div>
+                @if (editForm.get('surname')?.errors?.required) {
+                  <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+                }
+              </div>
+            }
+          </div>
+
+          <div class="col-md-6 mb-3">
+            @let forenamesRef = editForm.get('forenames')!;
+            <div class="mb-3">
+              <label class="form-label" for="field_forenames" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.forenames"
+                >Forenames</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="forenames"
+                id="field_forenames"
+                data-cy="forenames"
+                formControlName="forenames"
+              />
+              @if (forenamesRef.invalid && (forenamesRef.dirty || forenamesRef.touched)) {
+                <div>
+                  @if (editForm.get('forenames')?.errors?.required) {
+                    <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+                  }
+                </div>
               }
             </div>
-          }
+          </div>
         </div>
 
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_placeOfBirthTown"
-            jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.placeOfBirthTown"
-            >Place Of Birth Town</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="placeOfBirthTown"
-            id="field_placeOfBirthTown"
-            data-cy="placeOfBirthTown"
-            formControlName="placeOfBirthTown"
-          />
+        <!-- Previous surnaame and and DOB -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="mb-3">
+              <label
+                class="form-label"
+                for="field_previousSurname"
+                jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.previousSurname"
+                >Previous Surname</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                name="previousSurname"
+                id="field_previousSurname"
+                data-cy="previousSurname"
+                formControlName="previousSurname"
+              />
+            </div>
+          </div>
+
+          @let dobRef = editForm.get('dob')!;
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="field_dob" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.dob">Dob</label>
+            <div class="input-group">
+              <input
+                id="field_dob"
+                data-cy="dob"
+                type="text"
+                class="form-control"
+                name="dob"
+                ngbDatepicker
+                #dobDp="ngbDatepicker"
+                formControlName="dob"
+              />
+              <button type="button" class="btn btn-secondary" (click)="dobDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </div>
+            @if (dobRef.invalid && (dobRef.dirty || dobRef.touched)) {
+              <div>
+                @if (editForm.get('dob')?.errors?.required) {
+                  <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+                }
+              </div>
+            }
+          </div>
         </div>
 
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_placeOfBirthCountry"
-            jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.placeOfBirthCountry"
-            >Place Of Birth Country</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="placeOfBirthCountry"
-            id="field_placeOfBirthCountry"
-            data-cy="placeOfBirthCountry"
-            formControlName="placeOfBirthCountry"
-          />
+        <!-- Place of birth and Country of birth -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_placeOfBirthTown"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.placeOfBirthTown"
+              >Place Of Birth Town</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="placeOfBirthTown"
+              id="field_placeOfBirthTown"
+              data-cy="placeOfBirthTown"
+              formControlName="placeOfBirthTown"
+            />
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_placeOfBirthCountry"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.placeOfBirthCountry"
+              >Place Of Birth Country</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="placeOfBirthCountry"
+              id="field_placeOfBirthCountry"
+              data-cy="placeOfBirthCountry"
+              formControlName="placeOfBirthCountry"
+            />
+          </div>
+        </div>
+
+        <!-- Surname and Forename -->
+        <div class="row">
+          <div class="col-md-6 mb-3"></div>
+
+          <div class="col-md-6 mb-3"></div>
+        </div>
+
+        <!-- Surname and Forename -->
+        <div class="row">
+          <div class="col-md-6 mb-3"></div>
+
+          <div class="col-md-6 mb-3"></div>
         </div>
 
         <div class="mb-3">
@@ -566,6 +593,100 @@
         >
           <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center">
+  <div class="col-10">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-practitioner-heading"
+        data-cy="PractitionerCreateUpdateHeading"
+        jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.home.createOrEditLabel"
+      >
+        Create or edit a Practitioner
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_practitionerType"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.practitionerType"
+              >Practitioner Type</label
+            >
+            <select
+              class="form-control"
+              name="practitionerType"
+              formControlName="practitionerType"
+              id="field_practitionerType"
+              data-cy="practitionerType"
+            >
+              <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.PractitionerType.null' | translate }}</option>
+              @for (practitionerType of practitionerTypeValues; track $index) {
+                <option [value]="practitionerType">
+                  {{ 'medicalLaboratoryPractitionerApp.PractitionerType.' + practitionerType | translate }}
+                </option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_registrationNumber"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.registrationNumber"
+              >Registration Number</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="registrationNumber"
+              id="field_registrationNumber"
+              data-cy="registrationNumber"
+              formControlName="registrationNumber"
+            />
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="field_title" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.title">Title</label>
+            <select class="form-control" name="title" formControlName="title" id="field_title" data-cy="title">
+              <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.Title.null' | translate }}</option>
+              @for (title of titleValues; track $index) {
+                <option [value]="title">{{ 'medicalLaboratoryPractitionerApp.Title.' + title | translate }}</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <!-- Repeat similar structure for other fields -->
+
+        <div class="mb-3">
+          <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+            <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+          </button>
+          <button
+            type="submit"
+            id="save-entity"
+            data-cy="entityCreateSaveButton"
+            [disabled]="editForm.invalid || isSaving"
+            class="btn btn-primary"
+          >
+            <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+          </button>
+        </div>
       </div>
     </form>
   </div>
