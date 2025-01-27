@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-
-import { IPractitioner, NewPractitioner } from '../practitioner.model';
+import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
+import { IPractitioner, NewPractitioner, IQualification } from '../practitioner.model';
 
 /**
  * A partial Type with required key is used as form input.
@@ -15,6 +14,15 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
 type PractitionerFormGroupInput = IPractitioner | PartialWithRequiredKeyOf<NewPractitioner>;
 
 type PractitionerFormDefaults = Pick<NewPractitioner, 'id'>;
+
+type QualificationFormGroup = FormGroup<{
+  name: FormControl<IQualification['name']>;
+  trainingInstitute: FormControl<IQualification['trainingInstitute']>;
+  dateFrom: FormControl<IQualification['dateFrom']>;
+  dateTo: FormControl<IQualification['dateTo']>;
+  awardedBy: FormControl<IQualification['awardedBy']>;
+  dateAwarded: FormControl<IQualification['dateAwarded']>;
+}>;
 
 type PractitionerFormGroupContent = {
   id: FormControl<IPractitioner['id'] | NewPractitioner['id']>;
@@ -51,9 +59,12 @@ type PractitionerFormGroupContent = {
   applicationFee: FormControl<IPractitioner['applicationFee']>;
   status: FormControl<IPractitioner['status']>;
   reasonNotApproved: FormControl<IPractitioner['reasonNotApproved']>;
+  qualifications: FormArray<QualificationFormGroup>;
 };
 
 export type PractitionerFormGroup = FormGroup<PractitionerFormGroupContent>;
+
+export type QualificationFormArray = FormArray<QualificationFormGroup>;
 
 @Injectable({ providedIn: 'root' })
 export class PractitionerFormService {
@@ -113,6 +124,7 @@ export class PractitionerFormService {
       applicationFee: new FormControl(practitionerRawValue.applicationFee),
       status: new FormControl(practitionerRawValue.status),
       reasonNotApproved: new FormControl(practitionerRawValue.reasonNotApproved),
+      qualifications: new FormArray<QualificationFormGroup>([]),
     });
   }
 

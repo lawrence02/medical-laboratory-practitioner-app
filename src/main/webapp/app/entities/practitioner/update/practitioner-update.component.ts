@@ -3,7 +3,7 @@ import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-
+import dayjs from 'dayjs/esm';
 import SharedModule from 'app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -16,8 +16,9 @@ import { EmploymentStatus } from 'app/entities/enumerations/employment-status.mo
 import { TypeOfInstitution } from 'app/entities/enumerations/type-of-institution.model';
 import { Province } from 'app/entities/enumerations/province.model';
 import { PractitionerService } from '../service/practitioner.service';
-import { IPractitioner } from '../practitioner.model';
+import { IPractitioner, IQualification } from '../practitioner.model';
 import { PractitionerFormGroup, PractitionerFormService } from './practitioner-form.service';
+import { FormBuilder, FormArray, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'jhi-practitioner-update',
@@ -35,10 +36,10 @@ export class PractitionerUpdateComponent implements OnInit {
   employmentStatusValues = Object.keys(EmploymentStatus);
   typeOfInstitutionValues = Object.keys(TypeOfInstitution);
   provinceValues = Object.keys(Province);
-
   protected practitionerService = inject(PractitionerService);
   protected practitionerFormService = inject(PractitionerFormService);
   protected activatedRoute = inject(ActivatedRoute);
+  protected fb = inject(FormBuilder); // Inject FormBuilder
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   editForm: PractitionerFormGroup = this.practitionerFormService.createPractitionerFormGroup();
@@ -47,6 +48,28 @@ export class PractitionerUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ practitioner }) => {
       this.practitioner = practitioner;
       if (practitioner) {
+        if (!practitioner.qualifications) {
+          practitioner.qualifications = [];
+        }
+        const newQualification = {
+          name: 'Certificate in Project Management',
+          trainingInstitute: 'Online Learning Platform',
+          dateFrom: dayjs('2021-05-01'),
+          dateTo: dayjs('2021-10-30'),
+          awardedBy: 'Online Learning Platform',
+          dateAwarded: dayjs('2021-11-01'),
+        };
+        practitioner.qualifications.push(newQualification);
+        const newQualification1 = {
+          name: 'Project Management',
+          trainingInstitute: 'Online Learning Platform',
+          dateFrom: dayjs('2021-05-01'),
+          dateTo: dayjs('2021-10-30'),
+          awardedBy: 'Online Learning Platform',
+          dateAwarded: dayjs('2021-11-01'),
+        };
+        practitioner.qualifications.push(newQualification1);
+        this.populateQualifications(practitioner.qualifications);
         this.updateForm(practitioner);
       }
     });
@@ -64,6 +87,17 @@ export class PractitionerUpdateComponent implements OnInit {
     } else {
       this.subscribeToSaveResponse(this.practitionerService.create(practitioner));
     }
+  }
+
+  addQualification(): void {
+    const qualificationsFormArray = this.editForm.get('qualifications') as FormArray;
+    const newQualificationGroup = this.createQualificationFormGroup({}); // Pass an empty object for defaults
+    qualificationsFormArray.push(newQualificationGroup);
+  }
+
+  removeQualification(index: number): void {
+    const qualificationsFormArray = this.editForm.get('qualifications') as FormArray;
+    qualificationsFormArray.removeAt(index);
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPractitioner>>): void {
@@ -88,5 +122,32 @@ export class PractitionerUpdateComponent implements OnInit {
   protected updateForm(practitioner: IPractitioner): void {
     this.practitioner = practitioner;
     this.practitionerFormService.resetForm(this.editForm, practitioner);
+  }
+
+  get qualifications(): FormArray {
+    // eslint-disable-next-line no-console
+    console.log('Practitioner:', this.practitioner?.qualifications);
+    return this.editForm.get('qualifications') as FormArray;
+  }
+
+  private populateQualifications(qualifications: IQualification[]): void {
+    const qualificationsFormArray = this.editForm.get('qualifications') as FormArray;
+    qualificationsFormArray.clear();
+
+    qualifications.forEach(qualification => {
+      const qualificationGroup = this.createQualificationFormGroup(qualification);
+      qualificationsFormArray.push(qualificationGroup);
+    });
+  }
+
+  private createQualificationFormGroup(qualification: IQualification): FormGroup {
+    return new FormGroup({
+      name: new FormControl(qualification.name ?? ''),
+      trainingInstitute: new FormControl(qualification.trainingInstitute ?? ''),
+      dateFrom: new FormControl(qualification.dateFrom ?? ''),
+      dateTo: new FormControl(qualification.dateTo ?? ''),
+      awardedBy: new FormControl(qualification.awardedBy ?? ''),
+      dateAwarded: new FormControl(qualification.dateAwarded ?? ''),
+    });
   }
 }

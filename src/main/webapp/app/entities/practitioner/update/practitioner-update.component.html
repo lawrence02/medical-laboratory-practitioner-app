@@ -263,345 +263,378 @@
           </div>
         </div>
 
-        <!-- Surname and Forename -->
+        <!-- Marital Status and Address 1 -->
         <div class="row">
-          <div class="col-md-6 mb-3"></div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="field_maritalStatus" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.maritalStatus"
+              >Marital Status</label
+            >
+            <select
+              class="form-control"
+              name="maritalStatus"
+              formControlName="maritalStatus"
+              id="field_maritalStatus"
+              data-cy="maritalStatus"
+            >
+              <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.MaritalStatus.null' | translate }}</option>
+              @for (maritalStatus of maritalStatusValues; track $index) {
+                <option [value]="maritalStatus">{{ 'medicalLaboratoryPractitionerApp.MaritalStatus.' + maritalStatus | translate }}</option>
+              }
+            </select>
+          </div>
 
-          <div class="col-md-6 mb-3"></div>
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_residentialAddress1"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.residentialAddress1"
+              >Residential Address 1</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="residentialAddress1"
+              id="field_residentialAddress1"
+              data-cy="residentialAddress1"
+              formControlName="residentialAddress1"
+            />
+          </div>
         </div>
 
-        <!-- Surname and Forename -->
+        <!-- Address 2 and 3 -->
         <div class="row">
-          <div class="col-md-6 mb-3"></div>
-
-          <div class="col-md-6 mb-3"></div>
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_residentialAddress2"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.residentialAddress2"
+              >Residential Address 2</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="residentialAddress2"
+              id="field_residentialAddress2"
+              data-cy="residentialAddress2"
+              formControlName="residentialAddress2"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_residentialAddress3"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.residentialAddress3"
+              >Residential Address 3</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="residentialAddress3"
+              id="field_residentialAddress3"
+              data-cy="residentialAddress3"
+              formControlName="residentialAddress3"
+            />
+          </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_maritalStatus" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.maritalStatus"
-            >Marital Status</label
-          >
-          <select
-            class="form-control"
-            name="maritalStatus"
-            formControlName="maritalStatus"
-            id="field_maritalStatus"
-            data-cy="maritalStatus"
-          >
-            <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.MaritalStatus.null' | translate }}</option>
-            @for (maritalStatus of maritalStatusValues; track $index) {
-              <option [value]="maritalStatus">{{ 'medicalLaboratoryPractitionerApp.MaritalStatus.' + maritalStatus | translate }}</option>
-            }
-          </select>
+        <!-- Home phone and work phone -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="field_homePhone" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.homePhone"
+              >Home Phone</label
+            >
+            <input type="text" class="form-control" name="homePhone" id="field_homePhone" data-cy="homePhone" formControlName="homePhone" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="field_workPhone" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.workPhone"
+              >Work Phone</label
+            >
+            <input type="text" class="form-control" name="workPhone" id="field_workPhone" data-cy="workPhone" formControlName="workPhone" />
+          </div>
         </div>
 
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_residentialAddress1"
-            jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.residentialAddress1"
-            >Residential Address 1</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="residentialAddress1"
-            id="field_residentialAddress1"
-            data-cy="residentialAddress1"
-            formControlName="residentialAddress1"
-          />
+        <!-- Cell phone and Email -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="field_cellPhone" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.cellPhone"
+              >Cell Phone</label
+            >
+            <input type="text" class="form-control" name="cellPhone" id="field_cellPhone" data-cy="cellPhone" formControlName="cellPhone" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="field_emailAddress" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.emailAddress"
+              >Email Address</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="emailAddress"
+              id="field_emailAddress"
+              data-cy="emailAddress"
+              formControlName="emailAddress"
+            />
+          </div>
         </div>
 
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_residentialAddress2"
-            jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.residentialAddress2"
-            >Residential Address 2</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="residentialAddress2"
-            id="field_residentialAddress2"
-            data-cy="residentialAddress2"
-            formControlName="residentialAddress2"
-          />
+        <!-- Professional Qualification -->
+        <div class="row">
+          Quali
+          <pre>{{ qualifications }}</pre>
+          <div formArrayName="qualifications">
+            <div *ngFor="let qualification of qualifications.controls; let i = index" [formGroupName]="i">
+              <input formControlName="name" placeholder="Name" />
+              <input formControlName="trainingInstitute" placeholder="Training Institute" />
+              <input type="date" formControlName="dateFrom" placeholder="Date From" />
+              <input formControlName="dateTo" placeholder="Date To" />
+              <input formControlName="awardedBy" placeholder="Awarded By" />
+              <input type="date" type="date" formControlName="dateAwarded" placeholder="Date Awarded" />
+              <button type="button" (click)="removeQualification(i)">Remove</button>
+            </div>
+            <button type="button" (click)="addQualification()">Add Qualification</button>
+            <!-- <button type="button" (click)="clearQualifications()">Clear</button> -->
+          </div>
         </div>
 
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_residentialAddress3"
-            jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.residentialAddress3"
-            >Residential Address 3</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="residentialAddress3"
-            id="field_residentialAddress3"
-            data-cy="residentialAddress3"
-            formControlName="residentialAddress3"
-          />
+        <!-- Cell phone and Email -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_nameOfPlaceOfEmployment"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.nameOfPlaceOfEmployment"
+              >Name Of Place Of Employment</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="nameOfPlaceOfEmployment"
+              id="field_nameOfPlaceOfEmployment"
+              data-cy="nameOfPlaceOfEmployment"
+              formControlName="nameOfPlaceOfEmployment"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_employerAddress"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.employerAddress"
+              >Employer Address</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="employerAddress"
+              id="field_employerAddress"
+              data-cy="employerAddress"
+              formControlName="employerAddress"
+            />
+          </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_homePhone" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.homePhone"
-            >Home Phone</label
-          >
-          <input type="text" class="form-control" name="homePhone" id="field_homePhone" data-cy="homePhone" formControlName="homePhone" />
+        <!-- Cell phone and Email -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="field_employerEmail" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.employerEmail"
+              >Employer Email</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="employerEmail"
+              id="field_employerEmail"
+              data-cy="employerEmail"
+              formControlName="employerEmail"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_dateOfEmployment"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.dateOfEmployment"
+              >Date Of Employment</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="dateOfEmployment"
+              id="field_dateOfEmployment"
+              data-cy="dateOfEmployment"
+              formControlName="dateOfEmployment"
+            />
+          </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_workPhone" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.workPhone"
-            >Work Phone</label
-          >
-          <input type="text" class="form-control" name="workPhone" id="field_workPhone" data-cy="workPhone" formControlName="workPhone" />
+        <!-- Cell phone and Email -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_areaOfEmployment"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.areaOfEmployment"
+              >Area Of Employment</label
+            >
+            <select
+              class="form-control"
+              name="areaOfEmployment"
+              formControlName="areaOfEmployment"
+              id="field_areaOfEmployment"
+              data-cy="areaOfEmployment"
+            >
+              <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.AreaOfEmployment.null' | translate }}</option>
+              @for (areaOfEmployment of areaOfEmploymentValues; track $index) {
+                <option [value]="areaOfEmployment">
+                  {{ 'medicalLaboratoryPractitionerApp.AreaOfEmployment.' + areaOfEmployment | translate }}
+                </option>
+              }
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_employmentStatus"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.employmentStatus"
+              >Employment Status</label
+            >
+            <select
+              class="form-control"
+              name="employmentStatus"
+              formControlName="employmentStatus"
+              id="field_employmentStatus"
+              data-cy="employmentStatus"
+            >
+              <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.EmploymentStatus.null' | translate }}</option>
+              @for (employmentStatus of employmentStatusValues; track $index) {
+                <option [value]="employmentStatus">
+                  {{ 'medicalLaboratoryPractitionerApp.EmploymentStatus.' + employmentStatus | translate }}
+                </option>
+              }
+            </select>
+          </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_cellPhone" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.cellPhone"
-            >Cell Phone</label
-          >
-          <input type="text" class="form-control" name="cellPhone" id="field_cellPhone" data-cy="cellPhone" formControlName="cellPhone" />
+        <!-- Cell phone and Email -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_typeOfInstitution"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.typeOfInstitution"
+              >Type Of Institution</label
+            >
+            <select
+              class="form-control"
+              name="typeOfInstitution"
+              formControlName="typeOfInstitution"
+              id="field_typeOfInstitution"
+              data-cy="typeOfInstitution"
+            >
+              <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.TypeOfInstitution.null' | translate }}</option>
+              @for (typeOfInstitution of typeOfInstitutionValues; track $index) {
+                <option [value]="typeOfInstitution">
+                  {{ 'medicalLaboratoryPractitionerApp.TypeOfInstitution.' + typeOfInstitution | translate }}
+                </option>
+              }
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_provinceEmployed"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.provinceEmployed"
+              >Province Employed</label
+            >
+            <select
+              class="form-control"
+              name="provinceEmployed"
+              formControlName="provinceEmployed"
+              id="field_provinceEmployed"
+              data-cy="provinceEmployed"
+            >
+              <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.Province.null' | translate }}</option>
+              @for (province of provinceValues; track $index) {
+                <option [value]="province">{{ 'medicalLaboratoryPractitionerApp.Province.' + province | translate }}</option>
+              }
+            </select>
+          </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_emailAddress" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.emailAddress"
-            >Email Address</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="emailAddress"
-            id="field_emailAddress"
-            data-cy="emailAddress"
-            formControlName="emailAddress"
-          />
+        <!-- Cell phone and Email -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_reasonForNonEmployment"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.reasonForNonEmployment"
+              >Reason For Non Employment</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="reasonForNonEmployment"
+              id="field_reasonForNonEmployment"
+              data-cy="reasonForNonEmployment"
+              formControlName="reasonForNonEmployment"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_dateOfApplication"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.dateOfApplication"
+              >Date Of Application</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="dateOfApplication"
+              id="field_dateOfApplication"
+              data-cy="dateOfApplication"
+              formControlName="dateOfApplication"
+            />
+          </div>
         </div>
 
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_nameOfPlaceOfEmployment"
-            jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.nameOfPlaceOfEmployment"
-            >Name Of Place Of Employment</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="nameOfPlaceOfEmployment"
-            id="field_nameOfPlaceOfEmployment"
-            data-cy="nameOfPlaceOfEmployment"
-            formControlName="nameOfPlaceOfEmployment"
-          />
+        <!-- Cell phone and Email -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="field_applicationFee" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.applicationFee"
+              >Application Fee</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="applicationFee"
+              id="field_applicationFee"
+              data-cy="applicationFee"
+              formControlName="applicationFee"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="field_status" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.status">Status</label>
+            <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
+          </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label" for="field_employerAddress" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.employerAddress"
-            >Employer Address</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="employerAddress"
-            id="field_employerAddress"
-            data-cy="employerAddress"
-            formControlName="employerAddress"
-          />
+        <!-- Cell phone and Email -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label
+              class="form-label"
+              for="field_reasonNotApproved"
+              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.reasonNotApproved"
+              >Reason Not Approved</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              name="reasonNotApproved"
+              id="field_reasonNotApproved"
+              data-cy="reasonNotApproved"
+              formControlName="reasonNotApproved"
+            />
+          </div>
         </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_employerEmail" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.employerEmail"
-            >Employer Email</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="employerEmail"
-            id="field_employerEmail"
-            data-cy="employerEmail"
-            formControlName="employerEmail"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_dateOfEmployment"
-            jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.dateOfEmployment"
-            >Date Of Employment</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="dateOfEmployment"
-            id="field_dateOfEmployment"
-            data-cy="dateOfEmployment"
-            formControlName="dateOfEmployment"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_areaOfEmployment"
-            jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.areaOfEmployment"
-            >Area Of Employment</label
-          >
-          <select
-            class="form-control"
-            name="areaOfEmployment"
-            formControlName="areaOfEmployment"
-            id="field_areaOfEmployment"
-            data-cy="areaOfEmployment"
-          >
-            <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.AreaOfEmployment.null' | translate }}</option>
-            @for (areaOfEmployment of areaOfEmploymentValues; track $index) {
-              <option [value]="areaOfEmployment">
-                {{ 'medicalLaboratoryPractitionerApp.AreaOfEmployment.' + areaOfEmployment | translate }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_employmentStatus"
-            jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.employmentStatus"
-            >Employment Status</label
-          >
-          <select
-            class="form-control"
-            name="employmentStatus"
-            formControlName="employmentStatus"
-            id="field_employmentStatus"
-            data-cy="employmentStatus"
-          >
-            <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.EmploymentStatus.null' | translate }}</option>
-            @for (employmentStatus of employmentStatusValues; track $index) {
-              <option [value]="employmentStatus">
-                {{ 'medicalLaboratoryPractitionerApp.EmploymentStatus.' + employmentStatus | translate }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_typeOfInstitution"
-            jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.typeOfInstitution"
-            >Type Of Institution</label
-          >
-          <select
-            class="form-control"
-            name="typeOfInstitution"
-            formControlName="typeOfInstitution"
-            id="field_typeOfInstitution"
-            data-cy="typeOfInstitution"
-          >
-            <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.TypeOfInstitution.null' | translate }}</option>
-            @for (typeOfInstitution of typeOfInstitutionValues; track $index) {
-              <option [value]="typeOfInstitution">
-                {{ 'medicalLaboratoryPractitionerApp.TypeOfInstitution.' + typeOfInstitution | translate }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_provinceEmployed"
-            jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.provinceEmployed"
-            >Province Employed</label
-          >
-          <select
-            class="form-control"
-            name="provinceEmployed"
-            formControlName="provinceEmployed"
-            id="field_provinceEmployed"
-            data-cy="provinceEmployed"
-          >
-            <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.Province.null' | translate }}</option>
-            @for (province of provinceValues; track $index) {
-              <option [value]="province">{{ 'medicalLaboratoryPractitionerApp.Province.' + province | translate }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_reasonForNonEmployment"
-            jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.reasonForNonEmployment"
-            >Reason For Non Employment</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="reasonForNonEmployment"
-            id="field_reasonForNonEmployment"
-            data-cy="reasonForNonEmployment"
-            formControlName="reasonForNonEmployment"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_dateOfApplication"
-            jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.dateOfApplication"
-            >Date Of Application</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="dateOfApplication"
-            id="field_dateOfApplication"
-            data-cy="dateOfApplication"
-            formControlName="dateOfApplication"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_applicationFee" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.applicationFee"
-            >Application Fee</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="applicationFee"
-            id="field_applicationFee"
-            data-cy="applicationFee"
-            formControlName="applicationFee"
-          />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_status" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.status">Status</label>
-          <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
-        </div>
-
-        <div class="mb-3">
-          <label
-            class="form-label"
-            for="field_reasonNotApproved"
-            jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.reasonNotApproved"
-            >Reason Not Approved</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            name="reasonNotApproved"
-            id="field_reasonNotApproved"
-            data-cy="reasonNotApproved"
-            formControlName="reasonNotApproved"
-          />
-        </div>
+        <div class="col-md-6 mb-3"></div>
       </div>
 
       <div>
@@ -618,100 +651,6 @@
         >
           <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<div class="d-flex justify-content-center">
-  <div class="col-10">
-    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2
-        id="jhi-practitioner-heading"
-        data-cy="PractitionerCreateUpdateHeading"
-        jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.home.createOrEditLabel"
-      >
-        Create or edit a Practitioner
-      </h2>
-
-      <div>
-        <jhi-alert-error></jhi-alert-error>
-
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label class="form-label" for="field_id" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.id">ID</label>
-            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-          </div>
-
-          <div class="col-md-6 mb-3">
-            <label
-              class="form-label"
-              for="field_practitionerType"
-              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.practitionerType"
-              >Practitioner Type</label
-            >
-            <select
-              class="form-control"
-              name="practitionerType"
-              formControlName="practitionerType"
-              id="field_practitionerType"
-              data-cy="practitionerType"
-            >
-              <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.PractitionerType.null' | translate }}</option>
-              @for (practitionerType of practitionerTypeValues; track $index) {
-                <option [value]="practitionerType">
-                  {{ 'medicalLaboratoryPractitionerApp.PractitionerType.' + practitionerType | translate }}
-                </option>
-              }
-            </select>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label
-              class="form-label"
-              for="field_registrationNumber"
-              jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.registrationNumber"
-              >Registration Number</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              name="registrationNumber"
-              id="field_registrationNumber"
-              data-cy="registrationNumber"
-              formControlName="registrationNumber"
-            />
-          </div>
-
-          <div class="col-md-6 mb-3">
-            <label class="form-label" for="field_title" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.title">Title</label>
-            <select class="form-control" name="title" formControlName="title" id="field_title" data-cy="title">
-              <option [ngValue]="null">{{ 'medicalLaboratoryPractitionerApp.Title.null' | translate }}</option>
-              @for (title of titleValues; track $index) {
-                <option [value]="title">{{ 'medicalLaboratoryPractitionerApp.Title.' + title | translate }}</option>
-              }
-            </select>
-          </div>
-        </div>
-
-        <!-- Repeat similar structure for other fields -->
-
-        <div class="mb-3">
-          <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-            <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-          </button>
-          <button
-            type="submit"
-            id="save-entity"
-            data-cy="entityCreateSaveButton"
-            [disabled]="editForm.invalid || isSaving"
-            class="btn btn-primary"
-          >
-            <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-          </button>
-        </div>
       </div>
     </form>
   </div>

@@ -7,6 +7,7 @@ import { AreaOfEmployment } from 'app/entities/enumerations/area-of-employment.m
 import { EmploymentStatus } from 'app/entities/enumerations/employment-status.model';
 import { TypeOfInstitution } from 'app/entities/enumerations/type-of-institution.model';
 import { Province } from 'app/entities/enumerations/province.model';
+import { FormArray } from '@angular/forms';
 
 export interface IPractitioner {
   id: number;
@@ -43,6 +44,16 @@ export interface IPractitioner {
   applicationFee?: string | null;
   status?: string | null;
   reasonNotApproved?: string | null;
+  qualifications?: IQualification[];
+}
+
+export interface IQualification {
+  name?: string | null;
+  trainingInstitute?: string | null;
+  dateFrom?: dayjs.Dayjs | null;
+  dateTo?: dayjs.Dayjs | null;
+  awardedBy?: string | null;
+  dateAwarded?: dayjs.Dayjs | null;
 }
 
 export type NewPractitioner = Omit<IPractitioner, 'id'> & { id: null };
