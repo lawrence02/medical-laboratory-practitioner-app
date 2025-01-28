@@ -50,7 +50,7 @@
       "reasonForNonEmployment": "Reason For Non Employment",
       "dateOfApplication": "Date Of Application",
       "applicationFee": "Application Fee",
-      "status": "Status",
+      "status": "Application Status",
       "reasonNotApproved": "Reason Not Approved",
       "qualification": "Qualification",
       "help": {

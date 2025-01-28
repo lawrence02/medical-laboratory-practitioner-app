@@ -36,6 +36,7 @@ export class PractitionerUpdateComponent implements OnInit {
   employmentStatusValues = Object.keys(EmploymentStatus);
   typeOfInstitutionValues = Object.keys(TypeOfInstitution);
   provinceValues = Object.keys(Province);
+  activeTab = 'personal-info';
   protected practitionerService = inject(PractitionerService);
   protected practitionerFormService = inject(PractitionerFormService);
   protected activatedRoute = inject(ActivatedRoute);
@@ -77,6 +78,11 @@ export class PractitionerUpdateComponent implements OnInit {
 
   previousState(): void {
     window.history.back();
+  }
+
+  selectTab(tabName: string, $event: MouseEvent): void {
+    $event.preventDefault();
+    this.activeTab = tabName;
   }
 
   save(): void {
