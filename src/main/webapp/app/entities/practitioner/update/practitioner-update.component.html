@@ -388,19 +388,46 @@
             <p>This is the Academic Information tab content.</p>
             <!-- Professional Qualification -->
             <div class="row">
-              Quali
-              <pre>{{ qualifications }}</pre>
-              <div formArrayName="qualifications">
-                <div *ngFor="let qualification of qualifications.controls; let i = index" [formGroupName]="i">
-                  <input formControlName="name" placeholder="Name" />
-                  <input formControlName="trainingInstitute" placeholder="Training Institute" />
-                  <input type="date" formControlName="dateFrom" placeholder="Date From" />
-                  <input formControlName="dateTo" placeholder="Date To" />
-                  <input formControlName="awardedBy" placeholder="Awarded By" />
-                  <input type="date" type="date" formControlName="dateAwarded" placeholder="Date Awarded" />
-                  <button type="button" (click)="removeQualification(i)">Remove</button>
-                </div>
-                <button type="button" (click)="addQualification()">Add Qualification</button>
+              <div formArrayName="qualifications" class="col-12">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Training Institute</th>
+                      <th>Date From</th>
+                      <th>Date To</th>
+                      <th>Awarded By</th>
+                      <th>Date Awarded</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let qualification of qualifications.controls; let i = index" [formGroupName]="i">
+                      <td>
+                        <input formControlName="name" class="form-control" placeholder="Name" />
+                      </td>
+                      <td>
+                        <input formControlName="trainingInstitute" class="form-control" placeholder="Training Institute" />
+                      </td>
+                      <td>
+                        <input type="date" formControlName="dateFrom" class="form-control" placeholder="Date From" />
+                      </td>
+                      <td>
+                        <input type="date" formControlName="dateTo" class="form-control" placeholder="Date To" />
+                      </td>
+                      <td>
+                        <input formControlName="awardedBy" class="form-control" placeholder="Awarded By" />
+                      </td>
+                      <td>
+                        <input type="date" formControlName="dateAwarded" class="form-control" placeholder="Date Awarded" />
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-danger" (click)="removeQualification(i)">Remove</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button type="button" class="btn btn-primary" (click)="addQualification()">Add Qualification</button>
                 <!-- <button type="button" (click)="clearQualifications()">Clear</button> -->
               </div>
             </div>
