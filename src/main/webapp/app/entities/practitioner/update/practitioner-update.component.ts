@@ -92,11 +92,9 @@ export class PractitionerUpdateComponent implements OnInit {
         this.qualificationService.delete(qualificationId).subscribe({
           next(response) {
             qualificationsFormArray.removeAt(index);
-            // eslint-disable-next-line no-console
             console.log('Qualification with ID ', qualificationId, ' deleted successfully');
           },
           error(error) {
-            // eslint-disable-next-line no-console
             console.error('Error deleting qualification with ID ', qualificationId, error);
           },
         });

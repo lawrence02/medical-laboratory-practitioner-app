@@ -2,18 +2,15 @@
   "medicalLaboratoryPractitionerApp": {
     "PractitionerType": {
       "null": "",
-      "ClinicalScientist": "ClinicalScientist",
-      "MedicalResearchScientist": "MedicalResearchScientist",
-      "MedicalLaboratoryScientist": "MedicalLaboratoryScientist",
-      "MedicalLaboratoryTechnician": "MedicalLaboratoryTechnician",
-      "StateCertifiedTechnician": "StateCertifiedTechnician",
-      "State": "State",
-      "Certified": "Certified",
-      "Blood": "Blood",
-      "Bank": "Bank",
-      "Technician": "Technician",
+      "ClinicalScientist": "Clinical Scientist",
+      "MedicalResearchScientist": "Medical Research Scientist",
+      "MedicalLaboratoryScientist": "Medical Laboratory Scientist",
+      "MedicalLaboratoryTechnician": "Medical Laboratory Technician",
+      "MedicalLaboratoryAssistant": "Medical Laboratory Assistant",
+      "StateCertifiedTechnician": "State Certified Technician",
+      "StateCertifiedBloodBankTechnician": "State Certified Blood Bank Technician",
       "Cytotechnician": "Cytotechnician",
-      "POCTester": "POCTester"
+      "POCTester": "POC Tester"
     }
   }
 }
