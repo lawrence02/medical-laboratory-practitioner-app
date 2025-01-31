@@ -16,6 +16,7 @@ import { EmploymentStatus } from 'app/entities/enumerations/employment-status.mo
 import { TypeOfInstitution } from 'app/entities/enumerations/type-of-institution.model';
 import { Province } from 'app/entities/enumerations/province.model';
 import { PractitionerService } from '../service/practitioner.service';
+import { QualificationService } from '../../qualification/service/qualification.service';
 import { IPractitioner, IQualification } from '../practitioner.model';
 import { PractitionerFormGroup, PractitionerFormService } from './practitioner-form.service';
 import { FormBuilder, FormArray, FormGroup, FormControl } from '@angular/forms';
@@ -38,6 +39,7 @@ export class PractitionerUpdateComponent implements OnInit {
   provinceValues = Object.keys(Province);
   activeTab = 'personal-info';
   protected practitionerService = inject(PractitionerService);
+  protected qualificationService = inject(QualificationService);
   protected practitionerFormService = inject(PractitionerFormService);
   protected activatedRoute = inject(ActivatedRoute);
   protected fb = inject(FormBuilder); // Inject FormBuilder
@@ -52,24 +54,6 @@ export class PractitionerUpdateComponent implements OnInit {
         if (!practitioner.qualifications) {
           practitioner.qualifications = [];
         }
-        const newQualification = {
-          qualificationName: 'Certificate in Project Management',
-          nameOfInstitute: 'Online Learning Platform',
-          dateFrom: dayjs('2021-05-01'),
-          dateTo: dayjs('2021-10-30'),
-          awardedBy: 'Online Learning Platform',
-          awardedDate: dayjs('2021-11-01'),
-        };
-        practitioner.qualifications.push(newQualification);
-        const newQualification1 = {
-          qualificationName: 'Project Management',
-          nameOfInstitute: 'Online Learning Platform',
-          dateFrom: dayjs('2021-05-01'),
-          dateTo: dayjs('2021-10-30'),
-          awardedBy: 'Online Learning Platform',
-          awardedDate: dayjs('2021-11-01'),
-        };
-        practitioner.qualifications.push(newQualification1);
         this.populateQualifications(practitioner.qualifications);
         this.updateForm(practitioner);
       }
@@ -101,9 +85,25 @@ export class PractitionerUpdateComponent implements OnInit {
     qualificationsFormArray.push(newQualificationGroup);
   }
 
-  removeQualification(index: number): void {
+  removeQualification(index: number, qualificationId?: number): void {
     const qualificationsFormArray = this.editForm.get('qualifications') as FormArray;
-    qualificationsFormArray.removeAt(index);
+    if (qualificationId !== undefined && qualificationId.toString().length > 0) {
+      if (window.confirm('Are you sure you want to delete this qualification?')) {
+        this.qualificationService.delete(qualificationId).subscribe({
+          next(response) {
+            qualificationsFormArray.removeAt(index);
+            // eslint-disable-next-line no-console
+            console.log('Qualification with ID ', qualificationId, ' deleted successfully');
+          },
+          error(error) {
+            // eslint-disable-next-line no-console
+            console.error('Error deleting qualification with ID ', qualificationId, error);
+          },
+        });
+      }
+    } else {
+      qualificationsFormArray.removeAt(index);
+    }
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPractitioner>>): void {
@@ -148,6 +148,7 @@ export class PractitionerUpdateComponent implements OnInit {
 
   private createQualificationFormGroup(qualification: IQualification): FormGroup {
     return new FormGroup({
+      id: new FormControl(qualification.id ?? ''),
       qualificationName: new FormControl(qualification.qualificationName ?? ''),
       nameOfInstitute: new FormControl(qualification.nameOfInstitute ?? ''),
       dateFrom: new FormControl(qualification.dateFrom ?? ''),

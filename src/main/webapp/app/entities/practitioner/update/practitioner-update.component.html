@@ -402,27 +402,98 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let qualification of qualifications.controls; let i = index" [formGroupName]="i">
+                    <tr
+                      *ngFor="let qualification of qualifications.controls; let i = index"
+                      [formGroupName]="i"
+                      [ngStyle]="{
+                        'background-color':
+                          qualification.get('id')?.value && qualification.get('id')?.value.toString().length > 0 ? 'lightgreen' : '',
+                      }"
+                    >
                       <td>
-                        <input formControlName="qualificationName" class="form-control" placeholder="Name" />
+                        <input
+                          formControlName="id"
+                          class="form-control"
+                          hidden="true"
+                          placeholder="id"
+                          [ngStyle]="{
+                            'background-color':
+                              qualification.get('id')?.value && qualification.get('id')?.value.toString().length > 0 ? 'lightgreen' : '',
+                          }"
+                        />
+
+                        <input
+                          formControlName="qualificationName"
+                          class="form-control"
+                          placeholder="Name"
+                          [ngStyle]="{
+                            'background-color':
+                              qualification.get('id')?.value && qualification.get('id')?.value.toString().length > 0 ? 'lightgreen' : '',
+                          }"
+                        />
                       </td>
                       <td>
-                        <input formControlName="nameOfInstitute" class="form-control" placeholder="Training Institute" />
+                        <input
+                          formControlName="nameOfInstitute"
+                          class="form-control"
+                          placeholder="Training Institute"
+                          [ngStyle]="{
+                            'background-color':
+                              qualification.get('id')?.value && qualification.get('id')?.value.toString().length > 0 ? 'lightgreen' : '',
+                          }"
+                        />
                       </td>
                       <td>
-                        <input type="date" formControlName="dateFrom" class="form-control" placeholder="Date From" />
+                        <input
+                          type="date"
+                          formControlName="dateFrom"
+                          class="form-control"
+                          placeholder="Date From"
+                          [ngStyle]="{
+                            'background-color':
+                              qualification.get('id')?.value && qualification.get('id')?.value.toString().length > 0 ? 'lightgreen' : '',
+                          }"
+                        />
                       </td>
                       <td>
-                        <input type="date" formControlName="dateTo" class="form-control" placeholder="Date To" />
+                        <input
+                          type="date"
+                          formControlName="dateTo"
+                          class="form-control"
+                          placeholder="Date To"
+                          [ngStyle]="{
+                            'background-color':
+                              qualification.get('id')?.value && qualification.get('id')?.value.toString().length > 0 ? 'lightgreen' : '',
+                          }"
+                        />
                       </td>
                       <td>
-                        <input formControlName="awardedBy" class="form-control" placeholder="Awarded By" />
+                        <input
+                          formControlName="awardedBy"
+                          class="form-control"
+                          placeholder="Awarded By"
+                          [ngStyle]="{
+                            'background-color':
+                              qualification.get('id')?.value && qualification.get('id')?.value.toString().length > 0 ? 'lightgreen' : '',
+                          }"
+                        />
                       </td>
                       <td>
-                        <input type="date" formControlName="awardedDate" class="form-control" placeholder="Date Awarded" />
+                        <input
+                          type="date"
+                          formControlName="awardedDate"
+                          class="form-control"
+                          placeholder="Date Awarded"
+                          [ngStyle]="{
+                            'background-color':
+                              qualification.get('id')?.value && qualification.get('id')?.value.toString().length > 0 ? 'lightgreen' : '',
+                          }"
+                        />
                       </td>
                       <td>
-                        <button type="button" class="btn btn-danger" (click)="removeQualification(i)">Remove</button>
+                        <button type="button" class="btn btn-danger" (click)="removeQualification(i, qualification?.get('id')?.value)">
+                          Remove
+                        </button>
                       </td>
                     </tr>
                   </tbody>
@@ -825,3 +896,8 @@
     </form>
   </div>
 </div>
+<style>
+  .green-row {
+    background-color: lightgreen;
+  }
+</style>

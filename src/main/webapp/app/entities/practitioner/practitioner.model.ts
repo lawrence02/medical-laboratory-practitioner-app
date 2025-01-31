@@ -48,6 +48,7 @@ export interface IPractitioner {
 }
 
 export interface IQualification {
+  id?: string | null;
   qualificationName?: string | null;
   nameOfInstitute?: string | null;
   dateFrom?: dayjs.Dayjs | null;
