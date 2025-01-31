@@ -48,12 +48,12 @@ export interface IPractitioner {
 }
 
 export interface IQualification {
-  name?: string | null;
-  trainingInstitute?: string | null;
+  qualificationName?: string | null;
+  nameOfInstitute?: string | null;
   dateFrom?: dayjs.Dayjs | null;
   dateTo?: dayjs.Dayjs | null;
   awardedBy?: string | null;
-  dateAwarded?: dayjs.Dayjs | null;
+  awardedDate?: dayjs.Dayjs | null;
 }
 
 export type NewPractitioner = Omit<IPractitioner, 'id'> & { id: null };

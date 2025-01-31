@@ -404,10 +404,10 @@
                   <tbody>
                     <tr *ngFor="let qualification of qualifications.controls; let i = index" [formGroupName]="i">
                       <td>
-                        <input formControlName="name" class="form-control" placeholder="Name" />
+                        <input formControlName="qualificationName" class="form-control" placeholder="Name" />
                       </td>
                       <td>
-                        <input formControlName="trainingInstitute" class="form-control" placeholder="Training Institute" />
+                        <input formControlName="nameOfInstitute" class="form-control" placeholder="Training Institute" />
                       </td>
                       <td>
                         <input type="date" formControlName="dateFrom" class="form-control" placeholder="Date From" />
@@ -419,7 +419,7 @@
                         <input formControlName="awardedBy" class="form-control" placeholder="Awarded By" />
                       </td>
                       <td>
-                        <input type="date" formControlName="dateAwarded" class="form-control" placeholder="Date Awarded" />
+                        <input type="date" formControlName="awardedDate" class="form-control" placeholder="Date Awarded" />
                       </td>
                       <td>
                         <button type="button" class="btn btn-danger" (click)="removeQualification(i)">Remove</button>

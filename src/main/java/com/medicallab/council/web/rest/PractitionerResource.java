@@ -57,6 +57,7 @@ public class PractitionerResource {
     @PostMapping("")
     public ResponseEntity<Practitioner> createPractitioner(@Valid @RequestBody Practitioner practitioner) throws URISyntaxException {
         LOG.debug("REST request to save Practitioner : {}", practitioner);
+        LOG.debug("REST request to save Qualifications : {}", practitioner.getQualifications());
         if (practitioner.getId() != null) {
             throw new BadRequestAlertException("A new practitioner cannot already have an ID", ENTITY_NAME, "idexists");
         }

@@ -16,12 +16,12 @@ type PractitionerFormGroupInput = IPractitioner | PartialWithRequiredKeyOf<NewPr
 type PractitionerFormDefaults = Pick<NewPractitioner, 'id'>;
 
 type QualificationFormGroup = FormGroup<{
-  name: FormControl<IQualification['name']>;
-  trainingInstitute: FormControl<IQualification['trainingInstitute']>;
+  qualificationName: FormControl<IQualification['qualificationName']>;
+  nameOfInstitute: FormControl<IQualification['nameOfInstitute']>;
   dateFrom: FormControl<IQualification['dateFrom']>;
   dateTo: FormControl<IQualification['dateTo']>;
   awardedBy: FormControl<IQualification['awardedBy']>;
-  dateAwarded: FormControl<IQualification['dateAwarded']>;
+  awardedDate: FormControl<IQualification['awardedDate']>;
 }>;
 
 type PractitionerFormGroupContent = {

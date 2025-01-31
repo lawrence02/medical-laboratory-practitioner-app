@@ -1,7 +1,9 @@
 package com.medicallab.council.service;
 
+import com.medicallab.council.domain.Practitioner;
 import com.medicallab.council.domain.Qualification;
 import java.util.Optional;
+import java.util.Set;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -55,4 +57,6 @@ public interface QualificationService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    void saveAll(Set<Qualification> qualifications, Practitioner saved);
 }

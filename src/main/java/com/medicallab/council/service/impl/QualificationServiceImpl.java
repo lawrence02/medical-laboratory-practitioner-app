@@ -1,9 +1,11 @@
 package com.medicallab.council.service.impl;
 
+import com.medicallab.council.domain.Practitioner;
 import com.medicallab.council.domain.Qualification;
 import com.medicallab.council.repository.QualificationRepository;
 import com.medicallab.council.service.QualificationService;
 import java.util.Optional;
+import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -12,7 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Service Implementation for managing {@link com.medicallab.council.domain.Qualification}.
+ * Service Implementation for managing
+ * {@link com.medicallab.council.domain.Qualification}.
  */
 @Service
 @Transactional
@@ -87,5 +90,11 @@ public class QualificationServiceImpl implements QualificationService {
     public void delete(Long id) {
         LOG.debug("Request to delete Qualification : {}", id);
         qualificationRepository.deleteById(id);
+    }
+
+    @Override
+    public void saveAll(Set<Qualification> qualifications, Practitioner practitioner) {
+        qualifications.forEach(q -> q.setPractitioner(practitioner));
+        qualificationRepository.saveAll(qualifications);
     }
 }

@@ -151,8 +151,7 @@ public class Practitioner implements Serializable {
     @Column(name = "reason_not_approved")
     private String reasonNotApproved;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "practitioner")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @OneToMany(mappedBy = "practitioner", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnoreProperties(value = { "practitioner" }, allowSetters = true)
     private Set<Qualification> qualifications = new HashSet<>();
 
@@ -619,20 +618,6 @@ public class Practitioner implements Serializable {
         return this;
     }
 
-    public Practitioner addQualification(Qualification qualification) {
-        this.qualifications.add(qualification);
-        qualification.setPractitioner(this);
-        return this;
-    }
-
-    public Practitioner removeQualification(Qualification qualification) {
-        this.qualifications.remove(qualification);
-        qualification.setPractitioner(null);
-        return this;
-    }
-
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -646,48 +631,31 @@ public class Practitioner implements Serializable {
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        // see
+        // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
     // prettier-ignore
-    @Override
-    public String toString() {
-        return "Practitioner{" +
-            "id=" + getId() +
-            ", practitionerType='" + getPractitionerType() + "'" +
-            ", registrationNumber='" + getRegistrationNumber() + "'" +
-            ", title='" + getTitle() + "'" +
-            ", surname='" + getSurname() + "'" +
-            ", forenames='" + getForenames() + "'" +
-            ", previousSurname='" + getPreviousSurname() + "'" +
-            ", dob='" + getDob() + "'" +
-            ", gender='" + getGender() + "'" +
-            ", placeOfBirthTown='" + getPlaceOfBirthTown() + "'" +
-            ", placeOfBirthCountry='" + getPlaceOfBirthCountry() + "'" +
-            ", nationality='" + getNationality() + "'" +
-            ", nationalId='" + getNationalId() + "'" +
-            ", maritalStatus='" + getMaritalStatus() + "'" +
-            ", residentialAddress1='" + getResidentialAddress1() + "'" +
-            ", residentialAddress2='" + getResidentialAddress2() + "'" +
-            ", residentialAddress3='" + getResidentialAddress3() + "'" +
-            ", homePhone='" + getHomePhone() + "'" +
-            ", workPhone='" + getWorkPhone() + "'" +
-            ", cellPhone='" + getCellPhone() + "'" +
-            ", emailAddress='" + getEmailAddress() + "'" +
-            ", nameOfPlaceOfEmployment='" + getNameOfPlaceOfEmployment() + "'" +
-            ", employerAddress='" + getEmployerAddress() + "'" +
-            ", employerEmail='" + getEmployerEmail() + "'" +
-            ", dateOfEmployment='" + getDateOfEmployment() + "'" +
-            ", areaOfEmployment='" + getAreaOfEmployment() + "'" +
-            ", employmentStatus='" + getEmploymentStatus() + "'" +
-            ", typeOfInstitution='" + getTypeOfInstitution() + "'" +
-            ", provinceEmployed='" + getProvinceEmployed() + "'" +
-            ", reasonForNonEmployment='" + getReasonForNonEmployment() + "'" +
-            ", dateOfApplication='" + getDateOfApplication() + "'" +
-            ", applicationFee='" + getApplicationFee() + "'" +
-            ", status='" + getStatus() + "'" +
-            ", reasonNotApproved='" + getReasonNotApproved() + "'" +
-            "}";
-    }
+	@Override
+	public String toString() {
+		return "Practitioner{" + "id=" + getId() + ", practitionerType='" + getPractitionerType() + "'"
+				+ ", registrationNumber='" + getRegistrationNumber() + "'" + ", title='" + getTitle() + "'"
+				+ ", surname='" + getSurname() + "'" + ", forenames='" + getForenames() + "'" + ", previousSurname='"
+				+ getPreviousSurname() + "'" + ", dob='" + getDob() + "'" + ", gender='" + getGender() + "'"
+				+ ", placeOfBirthTown='" + getPlaceOfBirthTown() + "'" + ", placeOfBirthCountry='"
+				+ getPlaceOfBirthCountry() + "'" + ", nationality='" + getNationality() + "'" + ", nationalId='"
+				+ getNationalId() + "'" + ", maritalStatus='" + getMaritalStatus() + "'" + ", residentialAddress1='"
+				+ getResidentialAddress1() + "'" + ", residentialAddress2='" + getResidentialAddress2() + "'"
+				+ ", residentialAddress3='" + getResidentialAddress3() + "'" + ", homePhone='" + getHomePhone() + "'"
+				+ ", workPhone='" + getWorkPhone() + "'" + ", cellPhone='" + getCellPhone() + "'" + ", emailAddress='"
+				+ getEmailAddress() + "'" + ", nameOfPlaceOfEmployment='" + getNameOfPlaceOfEmployment() + "'"
+				+ ", employerAddress='" + getEmployerAddress() + "'" + ", employerEmail='" + getEmployerEmail() + "'"
+				+ ", dateOfEmployment='" + getDateOfEmployment() + "'" + ", areaOfEmployment='" + getAreaOfEmployment()
+				+ "'" + ", employmentStatus='" + getEmploymentStatus() + "'" + ", typeOfInstitution='"
+				+ getTypeOfInstitution() + "'" + ", provinceEmployed='" + getProvinceEmployed() + "'"
+				+ ", reasonForNonEmployment='" + getReasonForNonEmployment() + "'" + ", dateOfApplication='"
+				+ getDateOfApplication() + "'" + ", applicationFee='" + getApplicationFee() + "'" + ", status='"
+				+ getStatus() + "'" + ", reasonNotApproved='" + getReasonNotApproved() + "'" + "}";
+	}
 }

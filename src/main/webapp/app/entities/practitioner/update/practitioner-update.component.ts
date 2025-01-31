@@ -53,21 +53,21 @@ export class PractitionerUpdateComponent implements OnInit {
           practitioner.qualifications = [];
         }
         const newQualification = {
-          name: 'Certificate in Project Management',
-          trainingInstitute: 'Online Learning Platform',
+          qualificationName: 'Certificate in Project Management',
+          nameOfInstitute: 'Online Learning Platform',
           dateFrom: dayjs('2021-05-01'),
           dateTo: dayjs('2021-10-30'),
           awardedBy: 'Online Learning Platform',
-          dateAwarded: dayjs('2021-11-01'),
+          awardedDate: dayjs('2021-11-01'),
         };
         practitioner.qualifications.push(newQualification);
         const newQualification1 = {
-          name: 'Project Management',
-          trainingInstitute: 'Online Learning Platform',
+          qualificationName: 'Project Management',
+          nameOfInstitute: 'Online Learning Platform',
           dateFrom: dayjs('2021-05-01'),
           dateTo: dayjs('2021-10-30'),
           awardedBy: 'Online Learning Platform',
-          dateAwarded: dayjs('2021-11-01'),
+          awardedDate: dayjs('2021-11-01'),
         };
         practitioner.qualifications.push(newQualification1);
         this.populateQualifications(practitioner.qualifications);
@@ -148,12 +148,12 @@ export class PractitionerUpdateComponent implements OnInit {
 
   private createQualificationFormGroup(qualification: IQualification): FormGroup {
     return new FormGroup({
-      name: new FormControl(qualification.name ?? ''),
-      trainingInstitute: new FormControl(qualification.trainingInstitute ?? ''),
+      qualificationName: new FormControl(qualification.qualificationName ?? ''),
+      nameOfInstitute: new FormControl(qualification.nameOfInstitute ?? ''),
       dateFrom: new FormControl(qualification.dateFrom ?? ''),
       dateTo: new FormControl(qualification.dateTo ?? ''),
       awardedBy: new FormControl(qualification.awardedBy ?? ''),
-      dateAwarded: new FormControl(qualification.dateAwarded ?? ''),
+      awardedDate: new FormControl(qualification.awardedDate ?? ''),
     });
   }
 }
