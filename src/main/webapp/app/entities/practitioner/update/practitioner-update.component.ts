@@ -92,7 +92,6 @@ export class PractitionerUpdateComponent implements OnInit {
         this.qualificationService.delete(qualificationId).subscribe({
           next(response) {
             qualificationsFormArray.removeAt(index);
-            console.log('Qualification with ID ', qualificationId, ' deleted successfully');
           },
           error(error) {
             console.error('Error deleting qualification with ID ', qualificationId, error);
