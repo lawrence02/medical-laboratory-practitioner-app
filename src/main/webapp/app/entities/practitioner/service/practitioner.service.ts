@@ -8,7 +8,7 @@ import { isPresent } from 'app/core/util/operators';
 import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
-import { IPractitioner, NewPractitioner } from '../practitioner.model';
+import { IAttachment, IPractitioner, NewPractitioner } from '../practitioner.model';
 
 export type PartialUpdatePractitioner = Partial<IPractitioner> & Pick<IPractitioner, 'id'>;
 
@@ -17,12 +17,12 @@ type RestOf<T extends IPractitioner | NewPractitioner> = Omit<T, 'dob'> & {
 };
 
 export type RestPractitioner = RestOf<IPractitioner>;
-
 export type NewRestPractitioner = RestOf<NewPractitioner>;
 
 export type PartialUpdateRestPractitioner = RestOf<PartialUpdatePractitioner>;
 
 export type EntityResponseType = HttpResponse<IPractitioner>;
+export type AttachmentEntityResponseType = HttpResponse<IAttachment>;
 export type EntityArrayResponseType = HttpResponse<IPractitioner[]>;
 
 @Injectable({ providedIn: 'root' })
@@ -31,12 +31,19 @@ export class PractitionerService {
   protected readonly applicationConfigService = inject(ApplicationConfigService);
 
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/practitioners');
+  protected attachmentResourceUrl = this.applicationConfigService.getEndpointFor('api/attachments');
 
   create(practitioner: NewPractitioner): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(practitioner);
     return this.http
       .post<RestPractitioner>(this.resourceUrl, copy, { observe: 'response' })
       .pipe(map(res => this.convertResponseFromServer(res)));
+  }
+
+  createUpdateAttachment(attachment: IAttachment): Observable<HttpResponse<{}>> {
+    // eslint-disable-next-line no-console
+    console.log('Attached HTML file in service!!!!!!!:', attachment);
+    return this.http.post<IAttachment>(this.attachmentResourceUrl, attachment, { observe: 'response' });
   }
 
   update(practitioner: IPractitioner): Observable<EntityResponseType> {

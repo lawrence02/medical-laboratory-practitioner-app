@@ -17,7 +17,7 @@ import { TypeOfInstitution } from 'app/entities/enumerations/type-of-institution
 import { Province } from 'app/entities/enumerations/province.model';
 import { PractitionerService } from '../service/practitioner.service';
 import { QualificationService } from '../../qualification/service/qualification.service';
-import { IPractitioner, IQualification } from '../practitioner.model';
+import { IPractitioner, IQualification, IAttachment } from '../practitioner.model';
 import { PractitionerFormGroup, PractitionerFormService } from './practitioner-form.service';
 import { FormBuilder, FormArray, FormGroup, FormControl } from '@angular/forms';
 
@@ -29,6 +29,7 @@ import { FormBuilder, FormArray, FormGroup, FormControl } from '@angular/forms';
 export class PractitionerUpdateComponent implements OnInit {
   isSaving = false;
   practitioner: IPractitioner | null = null;
+  attachment: IAttachment | null = null;
   practitionerTypeValues = Object.keys(PractitionerType);
   titleValues = Object.keys(Title);
   genderValues = Object.keys(Gender);
@@ -77,11 +78,36 @@ export class PractitionerUpdateComponent implements OnInit {
     } else {
       this.subscribeToSaveResponse(this.practitionerService.create(practitioner));
     }
+
+    if (practitioner.id !== null && this.attachment != null) {
+      // eslint-disable-next-line no-console
+      console.log('Attached HTML file:', this.attachment);
+      this.subscribeToSaveAttachment(this.practitionerService.createUpdateAttachment(this.attachment));
+    }
+  }
+
+  filechange(event: Event): void {
+    const input: HTMLInputElement = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      // eslint-disable-next-line no-console
+      console.log('HTML file:', file);
+      const attachmentData: IAttachment = { attachment: file };
+      this.attachment = attachmentData;
+      if (this.practitioner) {
+        this.attachment = attachmentData;
+      }
+      // eslint-disable-next-line no-console
+      console.log('Selected file:', this.attachment);
+    } else {
+      this.attachment = null;
+    }
   }
 
   addQualification(): void {
     const qualificationsFormArray = this.editForm.get('qualifications') as FormArray;
-    const newQualificationGroup = this.createQualificationFormGroup({}); // Pass an empty object for defaults
+    const newQualificationGroup = this.createQualificationFormGroup({});
     qualificationsFormArray.push(newQualificationGroup);
   }
 
@@ -104,6 +130,13 @@ export class PractitionerUpdateComponent implements OnInit {
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPractitioner>>): void {
+    result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
+      next: () => this.onSaveSuccess(),
+      error: () => this.onSaveError(),
+    });
+  }
+
+  protected subscribeToSaveAttachment(result: Observable<HttpResponse<{}>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),
       error: () => this.onSaveError(),

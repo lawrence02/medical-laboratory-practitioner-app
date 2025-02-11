@@ -45,6 +45,11 @@ export interface IPractitioner {
   status?: string | null;
   reasonNotApproved?: string | null;
   qualifications?: IQualification[];
+  attachment?: File | null;
+}
+
+export interface IAttachment {
+  attachment: File | null;
 }
 
 export interface IQualification {

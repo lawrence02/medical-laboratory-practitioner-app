@@ -506,20 +506,18 @@
             <!-- Upload documents -->
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label
-                  class="form-label"
-                  for="field_nameOfPlaceOfEmployment"
-                  jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.uploadDocuments"
+                <label class="form-label" for="attachment" jhiTranslate="medicalLaboratoryPractitionerApp.practitioner.uploadDocuments"
                   >Upload Documents</label
                 >
                 <input
                   type="file"
                   class="form-control"
-                  name="nameOfPlaceOfEmployment"
-                  id="field_nameOfPlaceOfEmployment"
+                  name="attachment"
+                  id="attachment"
                   accept=".pdf, .doc, .docx, .png, .jpeg"
-                  data-cy="nameOfPlaceOfEmployment"
-                  formControlName="nameOfPlaceOfEmployment"
+                  data-cy="attachment"
+                  (change)="filechange($event)"
+                  formControlName="attachment"
                 />
               </div>
               <div class="col-md-6 mb-3"></div>

@@ -1,6 +1,8 @@
 package com.medicallab.council.service;
 
 import com.medicallab.council.domain.Practitioner;
+import com.medicallab.council.service.dto.PractitionerCountDTO;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -55,4 +57,6 @@ public interface PractitionerService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    List<PractitionerCountDTO> getPractitionerCounts();
 }

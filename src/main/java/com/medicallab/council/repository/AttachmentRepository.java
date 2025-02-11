@@ -1,8 +1,10 @@
 package com.medicallab.council.repository;
 
+import com.medicallab.council.domain.Attachment;
 import com.medicallab.council.domain.Practitioner;
-import com.medicallab.council.domain.enumeration.PractitionerType;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,6 +12,4 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface PractitionerRepository extends JpaRepository<Practitioner, Long> {
-    Long countByPractitionerType(PractitionerType type);
-}
+public interface AttachmentRepository extends JpaRepository<Attachment, Long> {}

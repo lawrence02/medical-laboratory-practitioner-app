@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
-import { IPractitioner, NewPractitioner, IQualification } from '../practitioner.model';
+import { IPractitioner, NewPractitioner, IQualification, IAttachment } from '../practitioner.model';
 
 /**
  * A partial Type with required key is used as form input.
@@ -23,6 +23,10 @@ type QualificationFormGroup = FormGroup<{
   dateTo: FormControl<IQualification['dateTo']>;
   awardedBy: FormControl<IQualification['awardedBy']>;
   awardedDate: FormControl<IQualification['awardedDate']>;
+}>;
+
+type AttachmentFormGroup = FormGroup<{
+  attachment: FormControl<IAttachment['attachment']>;
 }>;
 
 type PractitionerFormGroupContent = {
@@ -61,6 +65,7 @@ type PractitionerFormGroupContent = {
   status: FormControl<IPractitioner['status']>;
   reasonNotApproved: FormControl<IPractitioner['reasonNotApproved']>;
   qualifications: FormArray<QualificationFormGroup>;
+  attachment: FormControl<IPractitioner['attachment']>;
 };
 
 export type PractitionerFormGroup = FormGroup<PractitionerFormGroupContent>;
@@ -126,6 +131,7 @@ export class PractitionerFormService {
       status: new FormControl(practitionerRawValue.status),
       reasonNotApproved: new FormControl(practitionerRawValue.reasonNotApproved),
       qualifications: new FormArray<QualificationFormGroup>([]),
+      attachment: new FormControl(practitionerRawValue.attachment),
     });
   }
 

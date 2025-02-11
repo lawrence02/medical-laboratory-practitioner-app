@@ -1,3 +1,34 @@
+<style>
+  .count-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows the divs to wrap on smaller screens */
+    justify-content: space-around;
+    padding: 2px;
+  }
+
+  .count {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 5px; /* Adjust padding for better height */
+    text-align: center;
+    width: 100%; /* Default to full width on small screens */
+    max-width: 250px; /* Set a max width for larger screens */
+    margin: 10px; /* Add margin for spacing */
+  }
+
+  /* Media Query for Larger Screens */
+  @media (min-width: 600px) {
+    .count {
+      width: 30%; /* Adjust width for medium screens */
+    }
+  }
+
+  @media (min-width: 900px) {
+    .count {
+      width: 20%; /* Adjust width for larger screens */
+    }
+  }
+</style>
 <div class="row">
   <div class="col-md-3">
     <span class="hipster img-fluid rounded"></span>
@@ -32,6 +63,66 @@
           <a class="alert-link" routerLink="/account/register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
         </div>
       }
+    </div>
+
+    <div class="count-container">
+      <div class="count">
+        <p>Clinical Scientist</p>
+        <p>10</p>
+      </div>
+
+      <div class="count">
+        <p>Medical Research Scientist</p>
+        <p>20</p>
+      </div>
+
+      <div class="count">
+        <p>Medical Laboratory Scientist</p>
+        <p>5</p>
+      </div>
+      <div class="count">
+        <p>Medical Laboratory Technologist</p>
+        <p>5</p>
+      </div>
+    </div>
+    <div class="count-container">
+      <div class="count">
+        <p>State Certified Technician</p>
+        <p>10</p>
+      </div>
+
+      <div class="count">
+        <p>State Certified Blood Bank Technician</p>
+        <p>20</p>
+      </div>
+
+      <div class="count">
+        <p>Cyto-Technician</p>
+        <p>5</p>
+      </div>
+      <div class="count">
+        <p>Medical Laboratory Assistant</p>
+        <p>5</p>
+      </div>
+    </div>
+
+    <div class="count-container">
+      <div class="count">
+        <p>POC Tester</p>
+        <p>10</p>
+      </div>
+      <div class="count">
+        <p>Total Paid-Up Subscriptions</p>
+        <p>5</p>
+      </div>
+      <div class="count">
+        <p>Total Outstanding Subscriptions</p>
+        <p>5</p>
+      </div>
+      <div class="count">
+        <p>Notifications</p>
+        <p>20</p>
+      </div>
     </div>
 
     <p jhiTranslate="home.question">If you have any question on JHipster:</p>

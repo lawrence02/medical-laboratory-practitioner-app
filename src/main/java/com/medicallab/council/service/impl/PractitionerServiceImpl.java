@@ -1,10 +1,14 @@
 package com.medicallab.council.service.impl;
 
 import com.medicallab.council.domain.Practitioner;
+import com.medicallab.council.domain.enumeration.PractitionerType;
 import com.medicallab.council.repository.PractitionerRepository;
-import com.medicallab.council.repository.QualificationRepository;
+import com.medicallab.council.service.AttachmentService;
 import com.medicallab.council.service.PractitionerService;
 import com.medicallab.council.service.QualificationService;
+import com.medicallab.council.service.dto.PractitionerCountDTO;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,10 +29,16 @@ public class PractitionerServiceImpl implements PractitionerService {
 
     private final PractitionerRepository practitionerRepository;
     private final QualificationService qualificationService;
+    private final AttachmentService attachmentService;
 
-    public PractitionerServiceImpl(PractitionerRepository practitionerRepository, QualificationService qualificationService) {
+    public PractitionerServiceImpl(
+        PractitionerRepository practitionerRepository,
+        QualificationService qualificationService,
+        AttachmentService attachmentService
+    ) {
         this.practitionerRepository = practitionerRepository;
         this.qualificationService = qualificationService;
+        this.attachmentService = attachmentService;
     }
 
     @Override
@@ -45,7 +55,14 @@ public class PractitionerServiceImpl implements PractitionerService {
     @Override
     public Practitioner update(Practitioner practitioner) {
         LOG.debug("Request to update Practitioner : {}", practitioner);
-        return practitionerRepository.save(practitioner);
+        Practitioner saved = practitionerRepository.save(practitioner);
+        /*
+         * if(saved !=null && practitioner.getAttachment()!=null) {
+         * LOG.debug("Request to Save Multipart File  : {}",
+         * practitioner.getAttachment());
+         * attachmentService.saveAttachment(practitioner.getAttachment()); }
+         */
+        return saved;
     }
 
     @Override
@@ -158,6 +175,18 @@ public class PractitionerServiceImpl implements PractitionerService {
                 return existingPractitioner;
             })
             .map(practitionerRepository::save);
+    }
+
+    @Override
+    public List<PractitionerCountDTO> getPractitionerCounts() {
+        List<PractitionerCountDTO> counts = new ArrayList<>();
+
+        for (PractitionerType type : PractitionerType.values()) {
+            Long count = practitionerRepository.countByPractitionerType(type);
+            counts.add(new PractitionerCountDTO(type.name(), count));
+        }
+
+        return counts;
     }
 
     @Override
