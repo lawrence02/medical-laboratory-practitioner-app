@@ -62,7 +62,21 @@
 
         @if (account(); as accountRef) {
           @if (accountRef !== null && accountRef.authorities !== null && !accountRef.authorities.includes('ROLE_ADMIN')) {
-            <div class="alert alert-warning">You do not have administrator access.</div>
+            <div class="count-container">
+              <div class="count">
+                <p style="font-weight: 400">Subscriptions Status</p>
+                <span class="text-success" style="font-size: 48px">&#10003;</span>
+              </div>
+              <div class="count">
+                <p style="font-weight: 400">Current Work Status & Proffessions</p>
+              </div>
+              <div class="count">
+                <p style="font-weight: 400">Personal Details Status</p>
+              </div>
+              <div class="count">
+                <p style="font-weight: 400">Current Payment Details</p>
+              </div>
+            </div>
           }
         }
       } @else {
