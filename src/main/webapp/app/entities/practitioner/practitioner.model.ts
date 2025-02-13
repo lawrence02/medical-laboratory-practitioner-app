@@ -62,4 +62,16 @@ export interface IQualification {
   awardedDate?: dayjs.Dayjs | null;
 }
 
+export interface IDashboardCount {
+  practitionerType?: string | null;
+  count?: number | null;
+  formattedPractitionerType?: string | null;
+}
+
+export type NewDashboardCount = {
+  practitionerType?: string | null;
+  count?: number | null;
+  formattedPractitionerType?: string | null;
+};
+
 export type NewPractitioner = Omit<IPractitioner, 'id'> & { id: null };

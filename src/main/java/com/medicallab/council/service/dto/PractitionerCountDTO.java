@@ -26,4 +26,9 @@ public class PractitionerCountDTO {
     public void setCount(Long count) {
         this.count = count;
     }
+
+    // Method to format practitionerType
+    public String getFormattedPractitionerType() {
+        return practitionerType.replaceAll("([a-z])([A-Z])", "$1 $2");
+    }
 }

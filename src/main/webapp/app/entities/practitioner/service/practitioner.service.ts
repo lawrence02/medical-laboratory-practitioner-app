@@ -8,7 +8,7 @@ import { isPresent } from 'app/core/util/operators';
 import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
-import { IAttachment, IPractitioner, NewPractitioner } from '../practitioner.model';
+import { IAttachment, IPractitioner, NewPractitioner, IDashboardCount, NewDashboardCount } from '../practitioner.model';
 
 export type PartialUpdatePractitioner = Partial<IPractitioner> & Pick<IPractitioner, 'id'>;
 
@@ -16,7 +16,12 @@ type RestOf<T extends IPractitioner | NewPractitioner> = Omit<T, 'dob'> & {
   dob?: string | null;
 };
 
+type RestOfDashboard<T extends IDashboardCount | NewDashboardCount> = {
+  [K in keyof T]: T[K];
+};
+
 export type RestPractitioner = RestOf<IPractitioner>;
+export type RestPractitionerDashboard = RestOfDashboard<IDashboardCount>;
 export type NewRestPractitioner = RestOf<NewPractitioner>;
 
 export type PartialUpdateRestPractitioner = RestOf<PartialUpdatePractitioner>;
@@ -24,6 +29,7 @@ export type PartialUpdateRestPractitioner = RestOf<PartialUpdatePractitioner>;
 export type EntityResponseType = HttpResponse<IPractitioner>;
 export type AttachmentEntityResponseType = HttpResponse<IAttachment>;
 export type EntityArrayResponseType = HttpResponse<IPractitioner[]>;
+export type EntityDashboardResponseType = HttpResponse<IDashboardCount[]>;
 
 @Injectable({ providedIn: 'root' })
 export class PractitionerService {
@@ -70,6 +76,13 @@ export class PractitionerService {
     const options = createRequestOption(req);
     return this.http
       .get<RestPractitioner[]>(this.resourceUrl, { params: options, observe: 'response' })
+      .pipe(map(res => this.convertResponseArrayFromServer(res)));
+  }
+
+  queryDashboardCount(req?: any): Observable<any> {
+    const options = createRequestOption(req);
+    return this.http
+      .get<any>(this.resourceUrl + '/counts', { observe: 'response' })
       .pipe(map(res => this.convertResponseArrayFromServer(res)));
   }
 

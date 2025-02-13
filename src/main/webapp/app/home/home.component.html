@@ -48,6 +48,12 @@
             >
           }
         </div>
+        <div class="count-container">
+          <div class="count" *ngFor="let count of countsData">
+            <p style="font-weight: bold">{{ count.formattedPractitionerType }}</p>
+            <p>{{ count.count }}</p>
+          </div>
+        </div>
       } @else {
         <div class="alert alert-warning">
           <span jhiTranslate="global.messages.info.authenticated.prefix">If you want to </span>
@@ -63,66 +69,6 @@
           <a class="alert-link" routerLink="/account/register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
         </div>
       }
-    </div>
-
-    <div class="count-container">
-      <div class="count">
-        <p>Clinical Scientist</p>
-        <p>10</p>
-      </div>
-
-      <div class="count">
-        <p>Medical Research Scientist</p>
-        <p>20</p>
-      </div>
-
-      <div class="count">
-        <p>Medical Laboratory Scientist</p>
-        <p>5</p>
-      </div>
-      <div class="count">
-        <p>Medical Laboratory Technologist</p>
-        <p>5</p>
-      </div>
-    </div>
-    <div class="count-container">
-      <div class="count">
-        <p>State Certified Technician</p>
-        <p>10</p>
-      </div>
-
-      <div class="count">
-        <p>State Certified Blood Bank Technician</p>
-        <p>20</p>
-      </div>
-
-      <div class="count">
-        <p>Cyto-Technician</p>
-        <p>5</p>
-      </div>
-      <div class="count">
-        <p>Medical Laboratory Assistant</p>
-        <p>5</p>
-      </div>
-    </div>
-
-    <div class="count-container">
-      <div class="count">
-        <p>POC Tester</p>
-        <p>10</p>
-      </div>
-      <div class="count">
-        <p>Total Paid-Up Subscriptions</p>
-        <p>5</p>
-      </div>
-      <div class="count">
-        <p>Total Outstanding Subscriptions</p>
-        <p>5</p>
-      </div>
-      <div class="count">
-        <p>Notifications</p>
-        <p>20</p>
-      </div>
     </div>
 
     <p jhiTranslate="home.question">If you have any question on JHipster:</p>
