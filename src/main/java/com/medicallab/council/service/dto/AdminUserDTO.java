@@ -29,6 +29,9 @@ public class AdminUserDTO implements Serializable {
     @Size(max = 50)
     private String lastName;
 
+    @Size(max = 50)
+    private String nationalId;
+
     @Email
     @Size(min = 5, max = 254)
     private String email;
@@ -173,6 +176,14 @@ public class AdminUserDTO implements Serializable {
 
     public void setAuthorities(Set<String> authorities) {
         this.authorities = authorities;
+    }
+
+    public String getNationalId() {
+        return nationalId;
+    }
+
+    public void setNationalId(String nationalId) {
+        this.nationalId = nationalId;
     }
 
     // prettier-ignore

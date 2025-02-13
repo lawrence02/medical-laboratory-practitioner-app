@@ -79,7 +79,77 @@
               </div>
             }
           </div>
+          <!-- National ID -->
+          <div class="mb-3">
+            <label class="form-label" for="nationalId" jhiTranslate="global.form.nationalId.label">National ID</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nationalId"
+              name="nationalId"
+              placeholder="{{ 'global.form.nationalid.placeholder' | translate }}"
+              formControlName="nationalId"
+              data-cy="nationalId"
+            />
+            @let nationalIdRef = registerForm.get('nationalId')!;
+            @if (nationalIdRef.invalid && (nationalIdRef.dirty || nationalIdRef.touched)) {
+              <div>
+                @if (nationalIdRef?.errors?.required) {
+                  <small class="form-text text-danger" jhiTranslate="register.messages.validate.nationalId.required">
+                    Your National ID is required.
+                  </small>
+                }
+              </div>
+            }
+          </div>
+          <!-- Firstname -->
+          <div class="mb-3">
+            <label class="form-label" for="firstName" jhiTranslate="global.form.firstName.label">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              name="firstName"
+              placeholder="{{ 'global.form.firstName.placeholder' | translate }}"
+              formControlName="firstName"
+              data-cy="firstName"
+            />
+            @let firstNameRef = registerForm.get('firstName')!;
+            @if (firstNameRef.invalid && (firstNameRef.dirty || firstNameRef.touched)) {
+              <div>
+                @if (firstNameRef?.errors?.required) {
+                  <small class="form-text text-danger" jhiTranslate="register.messages.validate.firstName.required">
+                    Your First Name is required.
+                  </small>
+                }
+              </div>
+            }
+          </div>
 
+          <div class="mb-3">
+            <label class="form-label" for="lastName" jhiTranslate="global.form.lastName.label">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              name="lastName"
+              placeholder="{{ 'global.form.lastName.placeholder' | translate }}"
+              formControlName="lastName"
+              data-cy="lastName"
+            />
+            @let lastNameRef = registerForm.get('lastName')!;
+            @if (lastNameRef.invalid && (lastNameRef.dirty || lastNameRef.touched)) {
+              <div>
+                @if (lastNameRef?.errors?.required) {
+                  <small class="form-text text-danger" jhiTranslate="register.messages.validate.lastName.required">
+                    Your Last Name is required.
+                  </small>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Email -->
           <div class="mb-3">
             <label class="form-label" for="email" jhiTranslate="global.form.email.label">Email</label>
             <input

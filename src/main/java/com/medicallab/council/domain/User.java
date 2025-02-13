@@ -51,6 +51,10 @@ public class User extends AbstractAuditingEntity<Long> implements Serializable {
     @Column(name = "last_name", length = 50)
     private String lastName;
 
+    @Size(max = 50)
+    @Column(name = "national_id", length = 50)
+    private String nationalId;
+
     @Email
     @Size(min = 5, max = 254)
     @Column(length = 254, unique = true)
@@ -195,6 +199,14 @@ public class User extends AbstractAuditingEntity<Long> implements Serializable {
 
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public String getNationalId() {
+        return nationalId;
+    }
+
+    public void setNationalId(String nationalId) {
+        this.nationalId = nationalId;
     }
 
     @Override

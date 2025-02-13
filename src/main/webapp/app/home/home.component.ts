@@ -41,7 +41,7 @@ export default class HomeComponent implements OnInit, OnDestroy {
         this.account.set(account);
         if (account != null) {
           // eslint-disable-next-line no-console
-          console.log('Counts:', account.authorities);
+          console.log('Counts:', account);
           this.loadAll();
         }
       });

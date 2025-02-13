@@ -11,6 +11,24 @@
           "minlength": "Your username is required to be at least 1 character.",
           "maxlength": "Your username cannot be longer than 50 characters.",
           "pattern": "Your username is invalid."
+        },
+        "nationalId": {
+          "required": "Your nationalID is required.",
+          "minlength": "Your nationalID is required to be at least 1 character.",
+          "maxlength": "Your nationalID cannot be longer than 50 characters.",
+          "pattern": "Your nationalID is invalid."
+        },
+        "firstName": {
+          "required": "Your firstname is required.",
+          "minlength": "Your firstname is required to be at least 1 character.",
+          "maxlength": "Your firstname cannot be longer than 50 characters.",
+          "pattern": "Your firstname is invalid."
+        },
+        "lastName": {
+          "required": "Your lastname is required.",
+          "minlength": "Your lastname is required to be at least 1 character.",
+          "maxlength": "Your lastname cannot be longer than 50 characters.",
+          "pattern": "Your lastname is invalid."
         }
       },
       "success": "<strong>Registration saved!</strong> Please check your email for confirmation.",

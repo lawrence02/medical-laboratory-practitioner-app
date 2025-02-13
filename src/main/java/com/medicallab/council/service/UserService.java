@@ -117,6 +117,7 @@ public class UserService {
         newUser.setPassword(encryptedPassword);
         newUser.setFirstName(userDTO.getFirstName());
         newUser.setLastName(userDTO.getLastName());
+        newUser.setNationalId(userDTO.getNationalId());
         if (userDTO.getEmail() != null) {
             newUser.setEmail(userDTO.getEmail().toLowerCase());
         }
@@ -150,6 +151,7 @@ public class UserService {
         user.setLogin(userDTO.getLogin().toLowerCase());
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
+        user.setNationalId(userDTO.getNationalId());
         if (userDTO.getEmail() != null) {
             user.setEmail(userDTO.getEmail().toLowerCase());
         }
@@ -195,6 +197,7 @@ public class UserService {
                 user.setLogin(userDTO.getLogin().toLowerCase());
                 user.setFirstName(userDTO.getFirstName());
                 user.setLastName(userDTO.getLastName());
+                user.setNationalId(userDTO.getNationalId());
                 if (userDTO.getEmail() != null) {
                     user.setEmail(userDTO.getEmail().toLowerCase());
                 }
@@ -237,12 +240,13 @@ public class UserService {
      * @param langKey   language key.
      * @param imageUrl  image URL of user.
      */
-    public void updateUser(String firstName, String lastName, String email, String langKey, String imageUrl) {
+    public void updateUser(String firstName, String lastName, String nationalId, String email, String langKey, String imageUrl) {
         SecurityUtils.getCurrentUserLogin()
             .flatMap(userRepository::findOneByLogin)
             .ifPresent(user -> {
                 user.setFirstName(firstName);
                 user.setLastName(lastName);
+                user.setNationalId(nationalId);
                 if (email != null) {
                     user.setEmail(email.toLowerCase());
                 }

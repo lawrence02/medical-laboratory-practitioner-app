@@ -38,6 +38,12 @@
     "form": {
       "username.label": "Username",
       "username.placeholder": "Your username",
+      "nationalId.label": "National ID",
+      "nationalid.placeholder": "Your National ID",
+      "lastName.label": "Last Name",
+      "lastName.placeholder": "Your Lastname",
+      "firstName.label": "First Name",
+      "firstName.placeholder": "Your First",
       "currentpassword.label": "Current password",
       "currentpassword.placeholder": "Current password",
       "newpassword.label": "New password",
