@@ -48,12 +48,23 @@
             >
           }
         </div>
-        <div class="count-container">
-          <div class="count" *ngFor="let count of countsData">
-            <p style="font-weight: 400">{{ count.formattedPractitionerType }}</p>
-            <p>{{ count.count }}</p>
-          </div>
-        </div>
+        <!-- Check if the user is an administrator -->
+        @if (account(); as accountRef) {
+          @if (accountRef !== null && accountRef.authorities !== null && accountRef.authorities.includes('ROLE_ADMIN')) {
+            <div class="count-container">
+              <div class="count" *ngFor="let count of countsData">
+                <p style="font-weight: 400">{{ count.formattedPractitionerType }}</p>
+                <p>{{ count.count }}</p>
+              </div>
+            </div>
+          }
+        }
+
+        @if (account(); as accountRef) {
+          @if (accountRef !== null && accountRef.authorities !== null && !accountRef.authorities.includes('ROLE_ADMIN')) {
+            <div class="alert alert-warning">You do not have administrator access.</div>
+          }
+        }
       } @else {
         <div class="alert alert-warning">
           <span jhiTranslate="global.messages.info.authenticated.prefix">If you want to </span>

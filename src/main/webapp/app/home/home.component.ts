@@ -40,6 +40,8 @@ export default class HomeComponent implements OnInit, OnDestroy {
       .subscribe(account => {
         this.account.set(account);
         if (account != null) {
+          // eslint-disable-next-line no-console
+          console.log('Counts:', account.authorities);
           this.loadAll();
         }
       });
@@ -56,8 +58,6 @@ export default class HomeComponent implements OnInit, OnDestroy {
         const currentCounts = this.counts();
         if (currentCounts) {
           this.countsData.push(...currentCounts);
-          // eslint-disable-next-line no-console
-          console.log('Counts:', this.countsData);
         }
       },
       error: () => {
